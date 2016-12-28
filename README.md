@@ -5,3 +5,5 @@ http://www.computerworld.com/article/3038270/data-analytics/create-maps-in-r-in-
 http://www.endmemo.com/program/R/gsub.php
 
 http://garrettgman.github.io/tidying/ -data tydying 
+
+reformatted the countries following the form, Korea, the Republic of to The Republic of Korea

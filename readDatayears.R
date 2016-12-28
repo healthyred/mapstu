@@ -21,7 +21,7 @@ readDatayears <- function(dataset){
 input
 #Read years is a funtion that is a more general adaption of readDatayears and will not use all of the regex that was 
 #used to sort through most of the dataset
-readYears <- function(dataset){
+readYears <- function(dataset, name){
   input <- readLines(dataset, warn = FALSE)
   #takes out all of the excess periods in every dataset
   input <- gsub("[.]","",input)
@@ -33,9 +33,10 @@ readYears <- function(dataset){
   input <- gsub("([a-z])([A-Z])", "\\1 \\2", input)
   #Puts spaces in between the values in the words
   input <- gsub("([0-9])([A-Z])", "\\1 \\2", input)
+  write(input, file = name)
 }
 
-#reset code
-input <- readLines("~/HutchinHill/2000-2001.rtf")
-m <- regexpr("[a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]*[a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+" , input)
-input <- regmatches(input, m)
+#test code
+#input <- readLines("~/HutchinHill/2000-2001.rtf")
+#m <- regexpr("[a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]*[a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+|[a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]* [a-zA-Z]+ [0-9]+" , input)
+#input <- regmatches(input, m)

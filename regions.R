@@ -11,9 +11,27 @@ absolutechange <- function(present , past, name){
   present-past
 }
 
-#Create a dataframe with the countries and the colors attached to each country dependent on the absolute change
-color <- function(){
+#List of colors for convenience
+green1 <- #dbefd3
+green2 <- #c1eeb4
+green3 <- #9de686
+green4 <- #78dd54
+green5 <- #4fc431
+green6 <- #47a426
+green7 <- #37801d
+green8 <- #265b12
+green9 <- #1b4109
+green10 <- #081f02
 
+
+#a function that takes in the absolutechange of two vectors and
+#returns a dataframe with the countries and the colors (based on scales of very red to very green)
+#attached to each country dependent on the absolute change
+color <- function(value){
+  copy <- as.data.frame(matrix(0, ncol = 2, nrow =207))
+  copy$V1 <- totalframe14$State.Countries
+  colnames(copy)[1] <- "States.Countries"
+  colnames(copy)[2] <- "Color"
 }
 
 

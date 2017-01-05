@@ -12,3 +12,5 @@ Changed People's republic of china to china to keep consistent with all the data
 Changed Georia to Georgia(Country) so that it does not get confused with state when merging datasets during the creation of the clean sets
 
 Guam was actually printed several times in the 2010-2011, 2012-13, 2013-14 datasets, and I manually deleted those duplicate entries
+
+Created the complete data matrix of 2000-2015,

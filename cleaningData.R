@@ -110,6 +110,6 @@ totalframe12<- merge(totalframe11, year2013, by= c("State.Countries"), all = TRU
 totalframe13<- merge(totalframe12, year2014, by= c("State.Countries"), all = TRUE)
 totalframe14<- merge(totalframe13, year2015, by= c("State.Countries"), all = TRUE)
 totalframe14[is.na(totalframe14)] <- 0
-save(totalframe14, file = "completedata2000.2015")
+save(totalframe14, file = "completedata2000.2015.Rda")
 
 

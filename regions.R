@@ -11,7 +11,7 @@ absolutechange <- function(present , past, name){
   present-past
 }
 
-#List of colors for convenience
+#List of colors for convenience(lightestshade to darkest shade)
 green1 <- #dbefd3
 green2 <- #c1eeb4
 green3 <- #9de686
@@ -23,6 +23,16 @@ green8 <- #265b12
 green9 <- #1b4109
 green10 <- #081f02
 
+red1 <- #ffcacb
+red2 <- #ff7f80
+red3 <- #ff4c4e
+red4 <- #ff3235
+red5 <- #ff5656
+red6 <- #f90204
+red7 <- #e60000
+red8 <- #cd0002
+red9 <- #b20001
+red10 <- #800000
 
 #a function that takes in the absolutechange of two vectors and
 #returns a dataframe with the countries and the colors (based on scales of very red to very green)

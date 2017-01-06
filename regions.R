@@ -37,12 +37,55 @@ red10 <- #800000
 #a function that takes in the absolutechange of two vectors and
 #returns a dataframe with the countries and the colors (based on scales of very red to very green)
 #attached to each country dependent on the absolute change
+
+#creating a copy matrix of a 2 by 207 matrix and filling in the first columnn with the countries
+copy <- as.data.frame(matrix(0, ncol = 2, nrow =207))
+copy$V1 <- totalframe14$State.Countries
+colnames(copy)[1] <- "States.Countries"
+colnames(copy)[2] <- "Color"
+
+#fills in the second column of the matrix with corresponding colors based on the absolutechange to each corresponding country
 color <- function(value){
-  copy <- as.data.frame(matrix(0, ncol = 2, nrow =207))
-  copy$V1 <- totalframe14$State.Countries
-  colnames(copy)[1] <- "States.Countries"
-  colnames(copy)[2] <- "Color"
+    if(x = 0) {
+      y <- NA
+
+      else if(x>0 && x<4) {
+        y <- green1
+      }
+      else if(x>0 && x<=5) {
+        y <- green2
+      }
+      else if(x>5 && x<=10) {
+        y <- green3
+      }
+      else if(x>10 && x<=15) {
+        y <- green4
+      }
+      else if(x>15 && x<=20) {
+        y <- green5
+      }
+      else if(x>20 && x<=25) {
+        y <- green6
+      }
+      else if(x>25 && x<=30) {
+        y <- green7
+      }
+      else if(x>30 && x<=35) {
+        y <- green8
+      }
+      else if(x>35 && x<=40) {
+        y <- green9
+      }
+      else if(x>40) {
+        y <- green10
+      }
+      return(y)
+    }
 }
+
+
+
+
 
 
 usshapefile <- "data/cb_2014_us_county_5m/cb_2014_us_county_5m.shp"

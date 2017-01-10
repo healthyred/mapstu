@@ -7,6 +7,7 @@ http://www.endmemo.com/program/R/gsub.php
 http://garrettgman.github.io/tidying/ -data tidying 
 http://stackoverflow.com/questions/13672781/populate-a-column-using-if-statements-in-r
 
+https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html - state boundary files
 reformatted the countries following the form, Korea, the Republic of to The Republic of Korea
 Changed People's republic of china to china to keep consistent with all the data sets
 

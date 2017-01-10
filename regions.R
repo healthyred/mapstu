@@ -82,24 +82,24 @@ year2010.2012 <- copy
 year2011.2013 <- copy
 year2012.2014 <- copy
 year2013.2015 <- copy
+year2014.2016 <- copy
 
 
-
-year2000.2002 <- sapply(yearsdata$Students.Attending.in.2001.2002- yearsdata$Students.Attending.in.2000.2001,color)
-year2001.2003 <- sapply(yearsdata$Students.Attending.in.2002.2003- yearsdata$Students.Attending.in.2001.2002,color)
-year2002.2004 <- sapply(yearsdata$Students.Attending.in.2003.2004- yearsdata$Students.Attending.in.2002.2003,color)
-year2003.2005 <- sapply(yearsdata$Students.Attending.in.2004.2005- yearsdata$Students.Attending.in.2003.2004,color)
-year2004.2006 <- sapply(yearsdata$Students.Attending.in.2005.2006- yearsdata$Students.Attending.in.2004.2005,color)
-year2005.2007 <- sapply(yearsdata$Students.Attending.in.2006.2007- yearsdata$Students.Attending.in.2005.2006,color)
-year2006.2008 <- sapply(yearsdata$Students.Attending.in.2007.2008- yearsdata$Students.Attending.in.2006.2007,color)
-year2007.2009 <- sapply(yearsdata$Students.Attending.in.2008.2009- yearsdata$Students.Attending.in.2007.2008,color)
-year2008.2010 <- sapply(yearsdata$Students.Attending.in.2009.2010- yearsdata$Students.Attending.in.2008.2009,color)
-year2009.2011 <- sapply(yearsdata$Students.Attending.in.2010.2011- yearsdata$Students.Attending.in.2009.2010,color)
-year2010.2012 <- sapply(yearsdata$Students.Attending.in.2011.2012- yearsdata$Students.Attending.in.2010.2011,color)
-year2011.2013 <- sapply(yearsdata$Students.Attending.in.2012.2013- yearsdata$Students.Attending.in.2011.2012,color)
-year2012.2014 <- sapply(yearsdata$Students.Attending.in.2013.2014- yearsdata$Students.Attending.in.2012.2013,color)
-year2013.2015 <- sapply(yearsdata$Students.Attending.in.2014.2015- yearsdata$Students.Attending.in.2013.2014,color)
-year2014.2016 <- sapply(yearsdata$Students.Attending.in.2015.2016- yearsdata$Students.Attending.in.2014.2015,color)
+year2000.2002$Color <- sapply(yearsdata$Students.Attending.in.2001.2002- yearsdata$Students.Attending.in.2000.2001,color)
+year2001.2003$Color <- sapply(yearsdata$Students.Attending.in.2002.2003- yearsdata$Students.Attending.in.2001.2002,color)
+year2002.2004$Color <- sapply(yearsdata$Students.Attending.in.2003.2004- yearsdata$Students.Attending.in.2002.2003,color)
+year2003.2005$Color <- sapply(yearsdata$Students.Attending.in.2004.2005- yearsdata$Students.Attending.in.2003.2004,color)
+year2004.2006$Color <- sapply(yearsdata$Students.Attending.in.2005.2006- yearsdata$Students.Attending.in.2004.2005,color)
+year2005.2007$Color <- sapply(yearsdata$Students.Attending.in.2006.2007- yearsdata$Students.Attending.in.2005.2006,color)
+year2006.2008$Color <- sapply(yearsdata$Students.Attending.in.2007.2008- yearsdata$Students.Attending.in.2006.2007,color)
+year2007.2009$Color <- sapply(yearsdata$Students.Attending.in.2008.2009- yearsdata$Students.Attending.in.2007.2008,color)
+year2008.2010$Color <- sapply(yearsdata$Students.Attending.in.2009.2010- yearsdata$Students.Attending.in.2008.2009,color)
+year2009.2011$Color <- sapply(yearsdata$Students.Attending.in.2010.2011- yearsdata$Students.Attending.in.2009.2010,color)
+year2010.2012$Color <- sapply(yearsdata$Students.Attending.in.2011.2012- yearsdata$Students.Attending.in.2010.2011,color)
+year2011.2013$Color <- sapply(yearsdata$Students.Attending.in.2012.2013- yearsdata$Students.Attending.in.2011.2012,color)
+year2012.2014$Color <- sapply(yearsdata$Students.Attending.in.2013.2014- yearsdata$Students.Attending.in.2012.2013,color)
+year2013.2015$Color <- sapply(yearsdata$Students.Attending.in.2014.2015- yearsdata$Students.Attending.in.2013.2014,color)
+year2014.2016$Color <- sapply(yearsdata$Students.Attending.in.2015.2016- yearsdata$Students.Attending.in.2014.2015,color)
 
 
 copy$Color <- sapply(x , color)

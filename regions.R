@@ -36,7 +36,7 @@ red10 <- "#800000"
 #creating a copy matrix of a 2 by 207 matrix and filling in the first columnn with the countries
 copy <- as.data.frame(matrix(0, ncol = 2, nrow =207))
 copy$V1 <- totalframe14$State.Countries
-colnames(copy)[1] <- "States.Countries"
+colnames(copy)[1] <- "NAME"
 colnames(copy)[2] <- "Color"
 
 #fills in the second column of the matrix with corresponding colors based on the absolutechange to each corresponding country
@@ -104,6 +104,7 @@ year2014.2016$Color <- sapply(yearsdata$Students.Attending.in.2015.2016- yearsda
 
 copy$Color <- sapply(x , color)
 
-usshapefile <- "data/cb_2014_us_county_5m/cb_2014_us_county_5m.shp"
-usgeo <- read_shape(file=usshapefile)
-
+usshapefile <- "~/HutchinHill/cb_2015_us_state_5m/cb_2015_us_state_5m.shp"
+usgeo <- tmaptools::read_shape(file = usshapefile)
+tmap::qtm(usgeo)
+usmap <- tmaptools::append_data(usgeo , year2000.2002 , key.shp = "NAME", key.data = "Color", ignore.duplicates = TRUE, ignore.na = TRUE)

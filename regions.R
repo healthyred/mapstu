@@ -7,13 +7,14 @@ library("tmap")
 library("leaflet")
 library("tmaptools")
 library("stringdist")
+library(raster)
 #a function that takes in present and past which are vectors of the dataframe and calculates the absolute change of students
 #that come to Williams from each state/country
 #absolutechange <- function(present , past){
 #  present-past
 #}
 
-#List of colors for convenience(lightestshade to darkest shade)
+#List of colors for convenience(lightestshade to darkest shade) Can use this for the created palette
 green1 <- "#dbefd3"
 green2 <- "#c1eeb4"
 green3 <- "#9de686"
@@ -36,39 +37,39 @@ red9 <- "#b20001"
 red10 <- "#800000"
 
 #creating a copy matrix of a 2 by 207 matrix and filling in the first columnn with the countries
-copy <- as.data.frame(matrix(0, ncol = 2, nrow =207))
+copy <- as.data.frame(matrix(0, ncol = 1, nrow =207))
 copy$V1 <- totalframe14$State.Countries
 colnames(copy)[1] <- "NAME"
-colnames(copy)[2] <- "Color"
+
 
 #fills in the second column of the matrix with corresponding colors based on the absolutechange to each corresponding country
 # a function that assigns colors based on the absolute change from the newer year subtracted by the older year
-color <- function(x){
+#color <- function(x){
   #fills in the second column of the matrix with corresponding colors based on the absolutechange to each corresponding country
   # a function that assigns colors based on the absolute change from the newer year subtracted by the older year
-  if(x == 0) y <- NA
-  if(x>0 && x<=5)  y <- green1
-  if(x>5 && x<=10) y <- green2
-  if(x>10 && x<=15) y <- green3
-  if(x>15 && x<=20) y <- green4
-  if(x>20 && x<=25) y <- green5
-  if(x>25 && x<=30) y <- green6
-  if(x>30 && x<=35) y <- green7
-  if(x>35 && x<=40) y <- green8
-  if(x>40 && x<=45) y <- green9
-  if(x>45) y <- green10
-  if(x>=-5 && x<0) y<- red1
-  if(x>=-10 && x<(-5)) y<- red2
-  if(x>=-15 && x<(-10)) y<- red3
-  if(x>=-20 && x<(-15)) y<- red4
-  if(x>=-25 && x<(-20)) y<- red5
-  if(x>=-30 && x<(-25)) y<- red6
-  if(x>=-35 && x<(-30)) y<- red7
-  if(x>=-40 && x<(-35)) y<- red8
-  if(x>=-45 && x<(-40)) y<- red9
-  if(x<=-45) y<- red10
-  return(y)
-}
+# if(x == 0) y <- NA
+# if(x>0 && x<=5)  y <- green1
+# if(x>5 && x<=10) y <- green2
+# if(x>10 && x<=15) y <- green3
+# if(x>15 && x<=20) y <- green4
+# if(x>20 && x<=25) y <- green5
+# if(x>25 && x<=30) y <- green6
+# if(x>30 && x<=35) y <- green7
+# if(x>35 && x<=40) y <- green8
+# if(x>40 && x<=45) y <- green9
+# if(x>45) y <- green10
+# if(x>=-5 && x<0) y<- red1
+# if(x>=-10 && x<(-5)) y<- red2
+# if(x>=-15 && x<(-10)) y<- red3
+# if(x>=-20 && x<(-15)) y<- red4
+# if(x>=-25 && x<(-20)) y<- red5
+# if(x>=-30 && x<(-25)) y<- red6
+# if(x>=-35 && x<(-30)) y<- red7
+# if(x>=-40 && x<(-35)) y<- red8
+# if(x>=-45 && x<(-40)) y<- red9
+# if(x<=-45) y<- red10
+# return(y)
+#}
 #Initiates a basic data frame for every year
 year2000.2002 <- copy
 year2001.2003 <- copy
@@ -87,21 +88,21 @@ year2013.2015 <- copy
 year2014.2016 <- copy
 
 #Assigns the color to each state for each year
-year2000.2002$Color <- sapply(yearsdata$Students.Attending.in.2001.2002- yearsdata$Students.Attending.in.2000.2001,color)
-year2001.2003$Color <- sapply(yearsdata$Students.Attending.in.2002.2003- yearsdata$Students.Attending.in.2001.2002,color)
-year2002.2004$Color <- sapply(yearsdata$Students.Attending.in.2003.2004- yearsdata$Students.Attending.in.2002.2003,color)
-year2003.2005$Color <- sapply(yearsdata$Students.Attending.in.2004.2005- yearsdata$Students.Attending.in.2003.2004,color)
-year2004.2006$Color <- sapply(yearsdata$Students.Attending.in.2005.2006- yearsdata$Students.Attending.in.2004.2005,color)
-year2005.2007$Color <- sapply(yearsdata$Students.Attending.in.2006.2007- yearsdata$Students.Attending.in.2005.2006,color)
-year2006.2008$Color <- sapply(yearsdata$Students.Attending.in.2007.2008- yearsdata$Students.Attending.in.2006.2007,color)
-year2007.2009$Color <- sapply(yearsdata$Students.Attending.in.2008.2009- yearsdata$Students.Attending.in.2007.2008,color)
-year2008.2010$Color <- sapply(yearsdata$Students.Attending.in.2009.2010- yearsdata$Students.Attending.in.2008.2009,color)
-year2009.2011$Color <- sapply(yearsdata$Students.Attending.in.2010.2011- yearsdata$Students.Attending.in.2009.2010,color)
-year2010.2012$Color <- sapply(yearsdata$Students.Attending.in.2011.2012- yearsdata$Students.Attending.in.2010.2011,color)
-year2011.2013$Color <- sapply(yearsdata$Students.Attending.in.2012.2013- yearsdata$Students.Attending.in.2011.2012,color)
-year2012.2014$Color <- sapply(yearsdata$Students.Attending.in.2013.2014- yearsdata$Students.Attending.in.2012.2013,color)
-year2013.2015$Color <- sapply(yearsdata$Students.Attending.in.2014.2015- yearsdata$Students.Attending.in.2013.2014,color)
-year2014.2016$Color <- sapply(yearsdata$Students.Attending.in.2015.2016- yearsdata$Students.Attending.in.2014.2015,color)
+#year2000.2002$Color <- sapply(yearsdata$Students.Attending.in.2001.2002- yearsdata$Students.Attending.in.2000.2001,color)
+#year2001.2003$Color <- sapply(yearsdata$Students.Attending.in.2002.2003- yearsdata$Students.Attending.in.2001.2002,color)
+#year2002.2004$Color <- sapply(yearsdata$Students.Attending.in.2003.2004- yearsdata$Students.Attending.in.2002.2003,color)
+#year2003.2005$Color <- sapply(yearsdata$Students.Attending.in.2004.2005- yearsdata$Students.Attending.in.2003.2004,color)
+#year2004.2006$Color <- sapply(yearsdata$Students.Attending.in.2005.2006- yearsdata$Students.Attending.in.2004.2005,color)
+#year2005.2007$Color <- sapply(yearsdata$Students.Attending.in.2006.2007- yearsdata$Students.Attending.in.2005.2006,color)
+#year2006.2008$Color <- sapply(yearsdata$Students.Attending.in.2007.2008- yearsdata$Students.Attending.in.2006.2007,color)
+#year2007.2009$Color <- sapply(yearsdata$Students.Attending.in.2008.2009- yearsdata$Students.Attending.in.2007.2008,color)
+#year2008.2010$Color <- sapply(yearsdata$Students.Attending.in.2009.2010- yearsdata$Students.Attending.in.2008.2009,color)
+#year2009.2011$Color <- sapply(yearsdata$Students.Attending.in.2010.2011- yearsdata$Students.Attending.in.2009.2010,color)
+#year2010.2012$Color <- sapply(yearsdata$Students.Attending.in.2011.2012- yearsdata$Students.Attending.in.2010.2011,color)
+#year2011.2013$Color <- sapply(yearsdata$Students.Attending.in.2012.2013- yearsdata$Students.Attending.in.2011.2012,color)
+#year2012.2014$Color <- sapply(yearsdata$Students.Attending.in.2013.2014- yearsdata$Students.Attending.in.2012.2013,color)
+#year2013.2015$Color <- sapply(yearsdata$Students.Attending.in.2014.2015- yearsdata$Students.Attending.in.2013.2014,color)
+#year2014.2016$Color <- sapply(yearsdata$Students.Attending.in.2015.2016- yearsdata$Students.Attending.in.2014.2015,color)
 
 #Adds the absolutechange colomn to each data frame
 year2000.2002$Change <- c(yearsdata$Students.Attending.in.2001.2002- yearsdata$Students.Attending.in.2000.2001)
@@ -122,53 +123,67 @@ year2014.2016$Change <- c(yearsdata$Students.Attending.in.2015.2016- yearsdata$S
 
 #Testing what happens in the colors are set to NULL
 #Assigns the color to each state for each year
-year2000.2002$Color <- sapply(yearsdata$Students.Attending.in.2001.2002- yearsdata$Students.Attending.in.2000.2001,color)
-year2001.2003$Color <- sapply(yearsdata$Students.Attending.in.2002.2003- yearsdata$Students.Attending.in.2001.2002,color)
-year2002.2004$Color <- sapply(yearsdata$Students.Attending.in.2003.2004- yearsdata$Students.Attending.in.2002.2003,color)
-year2003.2005$Color <- sapply(yearsdata$Students.Attending.in.2004.2005- yearsdata$Students.Attending.in.2003.2004,color)
-year2004.2006$Color <- sapply(yearsdata$Students.Attending.in.2005.2006- yearsdata$Students.Attending.in.2004.2005,color)
-year2005.2007$Color <- sapply(yearsdata$Students.Attending.in.2006.2007- yearsdata$Students.Attending.in.2005.2006,color)
-year2006.2008$Color <- sapply(yearsdata$Students.Attending.in.2007.2008- yearsdata$Students.Attending.in.2006.2007,color)
-year2007.2009$Color <- sapply(yearsdata$Students.Attending.in.2008.2009- yearsdata$Students.Attending.in.2007.2008,color)
-year2008.2010$Color <- sapply(yearsdata$Students.Attending.in.2009.2010- yearsdata$Students.Attending.in.2008.2009,color)
-year2009.2011$Color <- sapply(yearsdata$Students.Attending.in.2010.2011- yearsdata$Students.Attending.in.2009.2010,color)
-year2010.2012$Color <- sapply(yearsdata$Students.Attending.in.2011.2012- yearsdata$Students.Attending.in.2010.2011,color)
-year2011.2013$Color <- sapply(yearsdata$Students.Attending.in.2012.2013- yearsdata$Students.Attending.in.2011.2012,color)
-year2012.2014$Color <- sapply(yearsdata$Students.Attending.in.2013.2014- yearsdata$Students.Attending.in.2012.2013,color)
-year2013.2015$Color <- sapply(yearsdata$Students.Attending.in.2014.2015- yearsdata$Students.Attending.in.2013.2014,color)
-year2014.2016$Color <- sapply(yearsdata$Students.Attending.in.2015.2016- yearsdata$Students.Attending.in.2014.2015,color)
+#year2000.2002$Color <- sapply(yearsdata$Students.Attending.in.2001.2002- yearsdata$Students.Attending.in.2000.2001,color)
+#year2001.2003$Color <- sapply(yearsdata$Students.Attending.in.2002.2003- yearsdata$Students.Attending.in.2001.2002,color)
+#year2002.2004$Color <- sapply(yearsdata$Students.Attending.in.2003.2004- yearsdata$Students.Attending.in.2002.2003,color)
+#year2003.2005$Color <- sapply(yearsdata$Students.Attending.in.2004.2005- yearsdata$Students.Attending.in.2003.2004,color)
+#year2004.2006$Color <- sapply(yearsdata$Students.Attending.in.2005.2006- yearsdata$Students.Attending.in.2004.2005,color)
+#year2005.2007$Color <- sapply(yearsdata$Students.Attending.in.2006.2007- yearsdata$Students.Attending.in.2005.2006,color)
+#year2006.2008$Color <- sapply(yearsdata$Students.Attending.in.2007.2008- yearsdata$Students.Attending.in.2006.2007,color)
+#year2007.2009$Color <- sapply(yearsdata$Students.Attending.in.2008.2009- yearsdata$Students.Attending.in.2007.2008,color)
+#year2008.2010$Color <- sapply(yearsdata$Students.Attending.in.2009.2010- yearsdata$Students.Attending.in.2008.2009,color)
+#year2009.2011$Color <- sapply(yearsdata$Students.Attending.in.2010.2011- yearsdata$Students.Attending.in.2009.2010,color)
+#year2010.2012$Color <- sapply(yearsdata$Students.Attending.in.2011.2012- yearsdata$Students.Attending.in.2010.2011,color)
+#year2011.2013$Color <- sapply(yearsdata$Students.Attending.in.2012.2013- yearsdata$Students.Attending.in.2011.2012,color)
+#year2012.2014$Color <- sapply(yearsdata$Students.Attending.in.2013.2014- yearsdata$Students.Attending.in.2012.2013,color)
+#year2013.2015$Color <- sapply(yearsdata$Students.Attending.in.2014.2015- yearsdata$Students.Attending.in.2013.2014,color)
+#year2014.2016$Color <- sapply(yearsdata$Students.Attending.in.2015.2016- yearsdata$Students.Attending.in.2014.2015,color)
 
 #Adds the absolutechange colomn to each data frame
-year2000.2002$Color <- NULL
-year2001.2003$Color <- NULL
-year2002.2004$Color <- NULL
-year2003.2005$Color <- NULL
-year2004.2006$Color <- NULL
-year2005.2007$Color <- NULL
-year2006.2008$Color <- NULL
-year2007.2009$Color <- NULL
-year2008.2010$Color <- NULL
-year2009.2011$Color <- NULL
-year2010.2012$Color <- NULL
-year2011.2013$Color <- NULL
-year2012.2014$Color <- NULL
-year2013.2015$Color <- NULL
-year2014.2016$Color <- NULL
+#year2000.2002$Color <- NULL
+#year2001.2003$Color <- NULL
+#year2002.2004$Color <- NULL
+#year2003.2005$Color <- NULL
+#year2004.2006$Color <- NULL
+#year2005.2007$Color <- NULL
+#year2006.2008$Color <- NULL
+#year2007.2009$Color <- NULL
+#year2008.2010$Color <- NULL
+#year2009.2011$Color <- NULL
+#year2010.2012$Color <- NULL
+#year2011.2013$Color <- NULL
+#year2012.2014$Color <- NULL
+#year2013.2015$Color <- NULL
+#year2014.2016$Color <- NULL
 
-
-usshapefile <- "~/HutchinHill/cb_2015_us_state_5m/cb_2015_us_state_5m.shp"
-usgeo <- tmaptools::read_shape(file = usshapefile)
-tmap::qtm(usgeo, fill = )
-usmap <- tmaptools::append_data(usgeo , year2000.2002 , key.shp = "NAME", key.data = "Color", ignore.duplicates = TRUE, ignore.na = TRUE)
-
+#Reading in the Nationfile
 nationshapefile <- "~/HutchinHill/cb_2015_us_state_20m/cb_2015_us_state_20m.shp"
 nationgeo<- read_shape(file = nationshapefile)
 
 
 #Tests to Merge
-merge(usgeo@data, year2000.2002, bx.x = "NAME", by.y="Change", all.x = TRUE)
-am <- amatch(usgeo@data$NAME, year2000.2002$NAME, maxDist = 3)
-b <- data.frame()
-for (i in 1:dim(usgeo@data)[1]) {
-  b<-rbind(b,data.frame(usgeo@data[i,],year2000.2002[am[i],]))
-}
+#cool <- match(year2000.2002$NAME, nationgeo$NAME)
+#merge(nationgeo@data, year2000.2002, bx.x = "NAME", by.y="Change", all.x = TRUE)
+#am <- amatch(nationgeo@data$NAME, year2000.2002$NAME, maxDist = 3)
+#totalmap <- data.frame()
+#for (i in 1:dim(nationgeo@data)[1]) {
+#  totalmap<-rbind(totalmap,data.frame(nationgeo@data[i,],year2000.2002[am[i],]))
+#}
+#totalmap
+
+#Corrects the Districtof Columbia issue
+year2000.2002$NAME <- as.character(year2000.2002$NAME)
+year2000.2002[year2000.2002$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+
+#Working code for merging spacial object with year2000.2002
+nationgeo@data <- data.frame(nationgeo@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
+tmap::qtm(nationgeo,"Change")
+
+#Code for the interative map
+tmap_mode("view")
+usmap <- tm_shape(nationgeo)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap
+
+#Attempts to make a working code that matches other word
+#year2000.2002$match[!is.na(i)] <- nationgeo@data$NAME[i[!is.na(i)]]
+#nationgeo@data <- data.frame(nationgeo@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"match"]),])

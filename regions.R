@@ -164,4 +164,12 @@ usmap <- tmaptools::append_data(usgeo , year2000.2002 , key.shp = "NAME", key.da
 nationshapefile <- "~/HutchinHill/cb_2015_us_state_20m/cb_2015_us_state_20m.shp"
 nationgeo<- read_shape(file = nationshapefile)
 
-http://gis.stackexchange.com/questions/176722/how-to-join-a-table-to-a-shapefile-with-non-matching-ids-and-names-similar-stri
+#http://gis.stackexchange.com/questions/176722/how-to-join-a-table-to-a-shapefile-with-non-matching-ids-and-names-similar-stri
+
+
+merge(usgeo, year2000.2002, bx.x = "NAME", by.y="Change", all.x = TRUE)
+am <- amatch(usgeo@data$NAME, year2000.2002$NAME, maxDist = 3)
+b <- data.frame()
+for (i in 1:dim(usgeo)[1]) {
+  b<-rbind(b,data.frame(usgeo[i,],year2000.2002[am[i],]))
+}

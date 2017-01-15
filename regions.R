@@ -156,10 +156,23 @@ year2014.2016$Change <- c(yearsdata$Students.Attending.in.2015.2016- yearsdata$S
 #year2013.2015$Color <- NULL
 #year2014.2016$Color <- NULL
 
-#Reading in the Nationfile
+#Reading in the Nationfile and intiating shpfiles for each year
 nationshapefile <- "~/HutchinHill/cb_2015_us_state_20m/cb_2015_us_state_20m.shp"
-nationgeo<- read_shape(file = nationshapefile)
-
+nationgeo2000.2002<- read_shape(file = nationshapefile)
+nationgeo2001.2003<- read_shape(file = nationshapefile)
+nationgeo2002.2004<- read_shape(file = nationshapefile)
+nationgeo2003.2005<- read_shape(file = nationshapefile)
+nationgeo2004.2006<- read_shape(file = nationshapefile)
+nationgeo2005.2007<- read_shape(file = nationshapefile)
+nationgeo2006.2008<- read_shape(file = nationshapefile)
+nationgeo2007.2009<- read_shape(file = nationshapefile)
+nationgeo2008.2010<- read_shape(file = nationshapefile)
+nationgeo2009.2011<- read_shape(file = nationshapefile)
+nationgeo2010.2012<- read_shape(file = nationshapefile)
+nationgeo2011.2013<- read_shape(file = nationshapefile)
+nationgeo2012.2014<- read_shape(file = nationshapefile)
+nationgeo2013.2015<- read_shape(file = nationshapefile)
+nationgeo2014.2016<- read_shape(file = nationshapefile)
 
 #Tests to Merge
 #cool <- match(year2000.2002$NAME, nationgeo$NAME)
@@ -174,10 +187,42 @@ nationgeo<- read_shape(file = nationshapefile)
 #Corrects the Districtof Columbia issue
 year2000.2002$NAME <- as.character(year2000.2002$NAME)
 year2000.2002[year2000.2002$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2001.2003$NAME <- as.character(year2001.2003$NAME)
+year2001.2003[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2002.2004$NAME <- as.character(year2001.2003$NAME)
+year2002.2004[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2003.2005$NAME <- as.character(year2001.2003$NAME)
+year2003.2005[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2004.2006$NAME <- as.character(year2001.2003$NAME)
+year2004.2006[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2005.2007$NAME <- as.character(year2001.2003$NAME)
+year2005.2007[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2006.2008$NAME <- as.character(year2001.2003$NAME)
+year2006.2008[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2007.2009$NAME <- as.character(year2001.2003$NAME)
+year2007.2009[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2008.2010$NAME <- as.character(year2001.2003$NAME)
+year2008.2010[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2009.2011$NAME <- as.character(year2001.2003$NAME)
+year2009.2011[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2010.2012$NAME <- as.character(year2001.2003$NAME)
+year2010.2012[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2011.2013$NAME <- as.character(year2001.2003$NAME)
+year2011.2013[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2012.2014$NAME <- as.character(year2001.2003$NAME)
+year2012.2014[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2013.2015$NAME <- as.character(year2001.2003$NAME)
+year2013.2015[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2014.2016$NAME <- as.character(year2001.2003$NAME)
+year2014.2016[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
 
 #Working code for merging spacial object with year2000.2002
 nationgeo@data <- data.frame(nationgeo@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
 tmap::qtm(nationgeo,"Change")
+
+#Creating maps for every single year
+nationgeo@data <- data.frame(nationgeo@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
+
 
 #Code for the interative map
 tmap_mode("view")

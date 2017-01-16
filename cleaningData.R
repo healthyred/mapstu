@@ -1,22 +1,22 @@
 #Reads in all the data in a clean format
 #We will read each 2000-2001 data as the year2000 for simpicities sake
 
-readYears("~/HutchinHill/2000-2001.rtf", "2000.2001_Clean")
-readYears("~/HutchinHill/2001-2002.rtf", "2001.2002_Clean")
-readYears("~/HutchinHill/2002-2003.rtf", "2002.2003_Clean")
-readYears("~/HutchinHill/2003-2004.rtf", "2003.2004_Clean")
-readYears("~/HutchinHill/2004-2005.rtf", "2004.2005_Clean")
-readYears("~/HutchinHill/2005-2006.rtf", "2005.2006_Clean")
-readYears("~/HutchinHill/2006-2007.rtf", "2006.2007_Clean")
-readYears("~/HutchinHill/2007-2008.rtf", "2007.2008_Clean")
-readYears("~/HutchinHill/2008-2009.rtf", "2008.2009_Clean")
-readYears("~/HutchinHill/2009-2010.rtf", "2009.2010_Clean")
-readYears("~/HutchinHill/2010-2011.rtf", "2010.2011_Clean")
-readYears("~/HutchinHill/2011-2012.rtf", "2011.2012_Clean")
-readYears("~/HutchinHill/2012-2013.rtf", "2012.2013_Clean")
-readYears("~/HutchinHill/2013-2014.rtf", "2013.2014_Clean")
-readYears("~/HutchinHill/2014-2015.rtf", "2014.2015_Clean")
-readYears("~/HutchinHill/2015-2016.rtf", "2015.2016_Clean")
+#readYears("~/HutchinHill/2000-2001.rtf", "2000.2001_Clean2")
+#readYears("~/HutchinHill/2001-2002.rtf", "2001.2002_Clean2")
+#readYears("~/HutchinHill/2002-2003.rtf", "2002.2003_Clean2")
+#readYears("~/HutchinHill/2003-2004.rtf", "2003.2004_Clean2")
+#readYears("~/HutchinHill/2004-2005.rtf", "2004.2005_Clean2")
+#readYears("~/HutchinHill/2005-2006.rtf", "2005.2006_Clean2")
+#readYears("~/HutchinHill/2006-2007.rtf", "2006.2007_Clean2")
+#readYears("~/HutchinHill/2007-2008.rtf", "2007.2008_Clean2")
+#readYears("~/HutchinHill/2008-2009.rtf", "2008.2009_Clean2")
+#readYears("~/HutchinHill/2009-2010.rtf", "2009.2010_Clean2")
+#readYears("~/HutchinHill/2010-2011.rtf", "2010.2011_Clean2")
+#readYears("~/HutchinHill/2011-2012.rtf", "2011.2012_Clean2")
+#readYears("~/HutchinHill/2012-2013.rtf", "2012.2013_Clean2")
+#readYears("~/HutchinHill/2013-2014.rtf", "2013.2014_Clean2")
+#readYears("~/HutchinHill/2014-2015.rtf", "2014.2015_Clean2")
+#readYears("~/HutchinHill/2015-2016.rtf", "2015.2016_Clean2")
 
 
 #Creates dataframes for all of the data

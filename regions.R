@@ -137,32 +137,32 @@ year2000.2002$NAME <- as.character(year2000.2002$NAME)
 year2000.2002[year2000.2002$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
 year2001.2003$NAME <- as.character(year2001.2003$NAME)
 year2001.2003[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2002.2004$NAME <- as.character(year2001.2003$NAME)
-year2002.2004[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2003.2005$NAME <- as.character(year2001.2003$NAME)
-year2003.2005[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2004.2006$NAME <- as.character(year2001.2003$NAME)
-year2004.2006[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2005.2007$NAME <- as.character(year2001.2003$NAME)
-year2005.2007[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2006.2008$NAME <- as.character(year2001.2003$NAME)
-year2006.2008[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2007.2009$NAME <- as.character(year2001.2003$NAME)
-year2007.2009[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2008.2010$NAME <- as.character(year2001.2003$NAME)
-year2008.2010[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2009.2011$NAME <- as.character(year2001.2003$NAME)
-year2009.2011[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2010.2012$NAME <- as.character(year2001.2003$NAME)
-year2010.2012[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2011.2013$NAME <- as.character(year2001.2003$NAME)
-year2011.2013[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2012.2014$NAME <- as.character(year2001.2003$NAME)
-year2012.2014[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2013.2015$NAME <- as.character(year2001.2003$NAME)
-year2013.2015[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-year2014.2016$NAME <- as.character(year2001.2003$NAME)
-year2014.2016[year2001.2003$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2002.2004$NAME <- as.character(year2002.2004$NAME)
+year2002.2004[year2002.2004$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2003.2005$NAME <- as.character(year2003.2005$NAME)
+year2003.2005[year2003.2005$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2004.2006$NAME <- as.character(year2004.2006$NAME)
+year2004.2006[year2004.2006$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2005.2007$NAME <- as.character(year2005.2007$NAME)
+year2005.2007[year2005.2007$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2006.2008$NAME <- as.character(year2006.2008$NAME)
+year2006.2008[year2006.2008$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2007.2009$NAME <- as.character(year2007.2009$NAME)
+year2007.2009[year2007.2009$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2008.2010$NAME <- as.character(year2008.2010$NAME)
+year2008.2010[year2008.2010$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2009.2011$NAME <- as.character(year2009.2011$NAME)
+year2009.2011[year2009.2011$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2010.2012$NAME <- as.character(year2010.2012$NAME)
+year2010.2012[year2010.2012$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2011.2013$NAME <- as.character(year2011.2013$NAME)
+year2011.2013[year2011.2013$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2012.2014$NAME <- as.character(year2012.2014$NAME)
+year2012.2014[year2012.2014$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2013.2015$NAME <- as.character(year2013.2015$NAME)
+year2013.2015[year2013.2015$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+year2014.2016$NAME <- as.character(year2014.2016$NAME)
+year2014.2016[year2014.2016$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
 
 #Working code for merging spacial object with year2000.2002
 nationgeo@data <- data.frame(nationgeo@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
@@ -170,27 +170,57 @@ tmap::qtm(nationgeo,"Change")
 
 #Creating maps for every single year
 nationgeo2000.2002@data<- data.frame(nationgeo2000.2002@data, year2000.2002[match(nationgeo2000.2002@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2001.2003@data<- data.frame(nationgeo2001.2003@data, year2001.2003[match(nationgeo@data[,"NAME"], year2001.2003[,"NAME"]),])
-nationgeo2002.2004@data<- data.frame(nationgeo2002.2004@data, year2002.2004[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2003.2005@data<- data.frame(nationgeo2003.2005@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2004.2006@data<- data.frame(nationgeo2004.2006@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2005.2007@data<- data.frame(nationgeo2005.2007@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2006.2008@data<- data.frame(nationgeo2006.2008@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2007.2009@data<- data.frame(nationgeo2007.2003@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2008.2010@data<- data.frame(nationgeo2008.2003@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2009.2011@data<- data.frame(nationgeo2009.2003@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2010.2012@data<- data.frame(nationgeo2010.2003@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2011.2013@data<- data.frame(nationgeo2011.2003@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2012.2014@data<- data.frame(nationgeo2012.2003@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2013.2015@data<- data.frame(nationgeo2013.2003@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-nationgeo2014.2016@data<- data.frame(nationgeo2014.2003@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
+nationgeo2001.2003@data<- data.frame(nationgeo2001.2003@data, year2001.2003[match(nationgeo2001.2003@data[,"NAME"], year2001.2003[,"NAME"]),])
+nationgeo2002.2004@data<- data.frame(nationgeo2002.2004@data, year2002.2004[match(nationgeo2002.2004@data[,"NAME"], year2002.2004[,"NAME"]),])
+nationgeo2003.2005@data<- data.frame(nationgeo2003.2005@data, year2003.2005[match(nationgeo2003.2005@data[,"NAME"], year2003.2005[,"NAME"]),])
+nationgeo2004.2006@data<- data.frame(nationgeo2004.2006@data, year2004.2006[match(nationgeo2004.2006@data[,"NAME"], year2004.2006[,"NAME"]),])
+nationgeo2005.2007@data<- data.frame(nationgeo2005.2007@data, year2005.2007[match(nationgeo2005.2007@data[,"NAME"], year2005.2007[,"NAME"]),])
+nationgeo2006.2008@data<- data.frame(nationgeo2006.2008@data, year2006.2008[match(nationgeo2006.2008@data[,"NAME"], year2006.2008[,"NAME"]),])
+nationgeo2007.2009@data<- data.frame(nationgeo2007.2009@data, year2007.2009[match(nationgeo2007.2009@data[,"NAME"], year2007.2009[,"NAME"]),])
+nationgeo2008.2010@data<- data.frame(nationgeo2008.2010@data, year2008.2010[match(nationgeo2008.2010@data[,"NAME"], year2008.2010[,"NAME"]),])
+nationgeo2009.2011@data<- data.frame(nationgeo2009.2011@data, year2009.2011[match(nationgeo2009.2011@data[,"NAME"], year2009.2011[,"NAME"]),])
+nationgeo2010.2012@data<- data.frame(nationgeo2010.2012@data, year2010.2012[match(nationgeo2010.2012@data[,"NAME"], year2010.2012[,"NAME"]),])
+nationgeo2011.2013@data<- data.frame(nationgeo2011.2013@data, year2011.2013[match(nationgeo2011.2013@data[,"NAME"], year2011.2013[,"NAME"]),])
+nationgeo2012.2014@data<- data.frame(nationgeo2012.2014@data, year2012.2014[match(nationgeo2012.2014@data[,"NAME"], year2012.2014[,"NAME"]),])
+nationgeo2013.2015@data<- data.frame(nationgeo2013.2015@data, year2013.2015[match(nationgeo2013.2015@data[,"NAME"], year2013.2015[,"NAME"]),])
+nationgeo2014.2016@data<- data.frame(nationgeo2014.2016@data, year2014.2016[match(nationgeo2014.2016@data[,"NAME"], year2014.2016[,"NAME"]),])
 
 
 #Code for the interative map
+tmap_mode("plot")
 tmap_mode("view")
-usmap <- tm_shape(nationgeo)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap
+usmap2000.2002 <- tm_shape(nationgeo2000.2002)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2001.2003 <- tm_shape(nationgeo2001.2003)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2002.2004 <- tm_shape(nationgeo2002.2004)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2003.2005 <- tm_shape(nationgeo2003.2005)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2004.2006 <- tm_shape(nationgeo2004.2006)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2005.2007 <- tm_shape(nationgeo2005.2007)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2006.2008 <- tm_shape(nationgeo2006.2008)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2007.2009 <- tm_shape(nationgeo2007.2009)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2008.2010 <- tm_shape(nationgeo2008.2010)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2009.2011 <- tm_shape(nationgeo2009.2011)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2010.2012 <- tm_shape(nationgeo2010.2012)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2011.2013 <- tm_shape(nationgeo2011.2013)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2012.2014 <- tm_shape(nationgeo2012.2014)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2013.2015 <- tm_shape(nationgeo2013.2015)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2014.2016 <- tm_shape(nationgeo2014.2016)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
 
+#loading the maps
+usmap2000.2002
+usmap2001.2003
+usmap2002.2004
+usmap2003.2005
+usmap2004.2006
+usmap2005.2007
+usmap2006.2008
+usmap2007.2009
+usmap2008.2010
+usmap2009.2011
+usmap2010.2012
+usmap2011.2013
+usmap2012.2014
+usmap2013.2015
+usmap2014.2016
 #Attempts to make a working code that matches other word
 #year2000.2002$match[!is.na(i)] <- nationgeo@data$NAME[i[!is.na(i)]]
 #nationgeo@data <- data.frame(nationgeo@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"match"]),])

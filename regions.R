@@ -36,6 +36,9 @@ red8 <- "#cd0002"
 red9 <- "#b20001"
 red10 <- "#800000"
 
+
+breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, 0, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf)
+palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1,green1,green2,green3,green4,green5,green6,green7,green8,green9,green10)
 #creating a copy matrix of a 2 by 207 matrix and filling in the first columnn with the countries
 copy <- as.data.frame(matrix(0, ncol = 1, nrow =207))
 copy$V1 <- totalframe14$State.Countries

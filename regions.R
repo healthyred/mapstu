@@ -8,11 +8,6 @@ library("leaflet")
 library("tmaptools")
 library("stringdist")
 library(raster)
-#a function that takes in present and past which are vectors of the dataframe and calculates the absolute change of students
-#that come to Williams from each state/country
-#absolutechange <- function(present , past){
-#  present-past
-#}
 
 #List of colors for convenience(lightestshade to darkest shade) Can use this for the created palette
 green1 <- "#dbefd3"
@@ -25,10 +20,11 @@ green7 <- "#37801d"
 green8 <- "#265b12"
 green9 <- "#1b4109"
 green10 <- "#081f02"
+gray <- "white"
 red1 <- "#ffcacb"
 red2 <- "#ff7f80"
-red3 <- "#ff4c4e"
-red4 <- "#ff3235"
+red3 <- "#ff3235"
+red4 <- "#ff4c4e"
 red5 <- "#ff5656"
 red6 <- "#f90204"
 red7 <- "#e60000"
@@ -36,43 +32,11 @@ red8 <- "#cd0002"
 red9 <- "#b20001"
 red10 <- "#800000"
 
-
-breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, 0, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf)
-palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1,green1,green2,green3,green4,green5,green6,green7,green8,green9,green10)
 #creating a copy matrix of a 2 by 207 matrix and filling in the first columnn with the countries
 copy <- as.data.frame(matrix(0, ncol = 1, nrow =207))
 copy$V1 <- totalframe14$State.Countries
 colnames(copy)[1] <- "NAME"
 
-
-#fills in the second column of the matrix with corresponding colors based on the absolutechange to each corresponding country
-# a function that assigns colors based on the absolute change from the newer year subtracted by the older year
-#color <- function(x){
-  #fills in the second column of the matrix with corresponding colors based on the absolutechange to each corresponding country
-  # a function that assigns colors based on the absolute change from the newer year subtracted by the older year
-# if(x == 0) y <- NA
-# if(x>0 && x<=5)  y <- green1
-# if(x>5 && x<=10) y <- green2
-# if(x>10 && x<=15) y <- green3
-# if(x>15 && x<=20) y <- green4
-# if(x>20 && x<=25) y <- green5
-# if(x>25 && x<=30) y <- green6
-# if(x>30 && x<=35) y <- green7
-# if(x>35 && x<=40) y <- green8
-# if(x>40 && x<=45) y <- green9
-# if(x>45) y <- green10
-# if(x>=-5 && x<0) y<- red1
-# if(x>=-10 && x<(-5)) y<- red2
-# if(x>=-15 && x<(-10)) y<- red3
-# if(x>=-20 && x<(-15)) y<- red4
-# if(x>=-25 && x<(-20)) y<- red5
-# if(x>=-30 && x<(-25)) y<- red6
-# if(x>=-35 && x<(-30)) y<- red7
-# if(x>=-40 && x<(-35)) y<- red8
-# if(x>=-45 && x<(-40)) y<- red9
-# if(x<=-45) y<- red10
-# return(y)
-#}
 #Initiates a basic data frame for every year
 year2000.2002 <- copy
 year2001.2003 <- copy
@@ -125,16 +89,6 @@ nationgeo2012.2014<- read_shape(file = nationshapefile)
 nationgeo2013.2015<- read_shape(file = nationshapefile)
 nationgeo2014.2016<- read_shape(file = nationshapefile)
 
-#Tests to Merge
-#cool <- match(year2000.2002$NAME, nationgeo$NAME)
-#merge(nationgeo@data, year2000.2002, bx.x = "NAME", by.y="Change", all.x = TRUE)
-#am <- amatch(nationgeo@data$NAME, year2000.2002$NAME, maxDist = 3)
-#totalmap <- data.frame()
-#for (i in 1:dim(nationgeo@data)[1]) {
-#  totalmap<-rbind(totalmap,data.frame(nationgeo@data[i,],year2000.2002[am[i],]))
-#}
-#totalmap
-
 #Corrects the Districtof Columbia issue
 year2000.2002$NAME <- as.character(year2000.2002$NAME)
 year2000.2002[year2000.2002$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
@@ -167,10 +121,6 @@ year2013.2015[year2013.2015$NAME== "Districtof Columbia", 'NAME'] <- "District o
 year2014.2016$NAME <- as.character(year2014.2016$NAME)
 year2014.2016[year2014.2016$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
 
-#Working code for merging spacial object with year2000.2002
-nationgeo@data <- data.frame(nationgeo@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"NAME"]),])
-tmap::qtm(nationgeo,"Change")
-
 #Creating maps for every single year
 nationgeo2000.2002@data<- data.frame(nationgeo2000.2002@data, year2000.2002[match(nationgeo2000.2002@data[,"NAME"], year2000.2002[,"NAME"]),])
 nationgeo2001.2003@data<- data.frame(nationgeo2001.2003@data, year2001.2003[match(nationgeo2001.2003@data[,"NAME"], year2001.2003[,"NAME"]),])
@@ -192,21 +142,21 @@ nationgeo2014.2016@data<- data.frame(nationgeo2014.2016@data, year2014.2016[matc
 #Code for the interative map
 tmap_mode("plot")
 tmap_mode("view")
-usmap2000.2002 <- tm_shape(nationgeo2000.2002)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2001.2003 <- tm_shape(nationgeo2001.2003)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2002.2004 <- tm_shape(nationgeo2002.2004)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2003.2005 <- tm_shape(nationgeo2003.2005)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2004.2006 <- tm_shape(nationgeo2004.2006)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2005.2007 <- tm_shape(nationgeo2005.2007)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2006.2008 <- tm_shape(nationgeo2006.2008)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2007.2009 <- tm_shape(nationgeo2007.2009)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2008.2010 <- tm_shape(nationgeo2008.2010)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2009.2011 <- tm_shape(nationgeo2009.2011)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2010.2012 <- tm_shape(nationgeo2010.2012)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2011.2013 <- tm_shape(nationgeo2011.2013)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2012.2014 <- tm_shape(nationgeo2012.2014)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2013.2015 <- tm_shape(nationgeo2013.2015)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
-usmap2014.2016 <- tm_shape(nationgeo2014.2016)+ tm_polygons("Change", palette = "Blues" , contrast=.7, id="name", title="Change in Students") + tm_style_gray() + tm_format_World()
+usmap2000.2002 <- tm_shape(nationgeo2000.2002)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10), contrast=.7, id="name", title="Change in Students 2000-2002") + tm_style_gray() + tm_format_World()
+usmap2001.2003 <- tm_shape(nationgeo2001.2003)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2001-2003") + tm_style_gray() + tm_format_World()
+usmap2002.2004 <- tm_shape(nationgeo2002.2004)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10), contrast=.7, id="name", title="Change in Students 2002-2004") + tm_style_gray() + tm_format_World()
+usmap2003.2005 <- tm_shape(nationgeo2003.2005)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2003-2005") + tm_style_gray() + tm_format_World()
+usmap2004.2006 <- tm_shape(nationgeo2004.2006)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2004-2006") + tm_style_gray() + tm_format_World()
+usmap2005.2007 <- tm_shape(nationgeo2005.2007)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2005-2007") + tm_style_gray() + tm_format_World()
+usmap2006.2008 <- tm_shape(nationgeo2006.2008)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2006-2008") + tm_style_gray() + tm_format_World()
+usmap2007.2009 <- tm_shape(nationgeo2007.2009)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2007-2009") + tm_style_gray() + tm_format_World()
+usmap2008.2010 <- tm_shape(nationgeo2008.2010)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2008-2010") + tm_style_gray() + tm_format_World()
+usmap2009.2011 <- tm_shape(nationgeo2009.2011)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2009-2011") + tm_style_gray() + tm_format_World()
+usmap2010.2012 <- tm_shape(nationgeo2010.2012)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2010-2012") + tm_style_gray() + tm_format_World()
+usmap2011.2013 <- tm_shape(nationgeo2011.2013)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2011-2013") + tm_style_gray() + tm_format_World()
+usmap2012.2014 <- tm_shape(nationgeo2012.2014)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2012-2014") + tm_style_gray() + tm_format_World()
+usmap2013.2015 <- tm_shape(nationgeo2013.2015)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2013-2015") + tm_style_gray() + tm_format_World()
+usmap2014.2016 <- tm_shape(nationgeo2014.2016)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10) , contrast=.7, id="name", title="Change in Students 2014-2016") + tm_style_gray() + tm_format_World()
 
 #loading the maps
 usmap2000.2002
@@ -224,6 +174,24 @@ usmap2011.2013
 usmap2012.2014
 usmap2013.2015
 usmap2014.2016
+
+#saving the map
+save_tmap(usmap2000.2002, "Years2000-2002.png", width=1920, height=1080)
+save_tmap(usmap2001.2003, "Years2001-2003.png", width=1920, height=1080)
+save_tmap(usmap2002.2004, "Years2002-2004.png", width=1920, height=1080)
+save_tmap(usmap2003.2005, "Years2003-2005.png", width=1920, height=1080)
+save_tmap(usmap2004.2006, "Years2004-2006.png", width=1920, height=1080)
+save_tmap(usmap2005.2007, "Years2005-2007.png", width=1920, height=1080)
+save_tmap(usmap2006.2008, "Years2006-2008.png", width=1920, height=1080)
+save_tmap(usmap2007.2009, "Years2007-2009.png", width=1920, height=1080)
+save_tmap(usmap2008.2010, "Years2008-2010.png", width=1920, height=1080)
+save_tmap(usmap2009.2011, "Years2009-2011.png", width=1920, height=1080)
+save_tmap(usmap2010.2012, "Years2010-2012.png", width=1920, height=1080)
+save_tmap(usmap2011.2013, "Years2011-2013.png", width=1920, height=1080)
+save_tmap(usmap2012.2014, "Years2012-2014.png", width=1920, height=1080)
+save_tmap(usmap2013.2015, "Years2013-2015.png", width=1920, height=1080)
+save_tmap(usmap2014.2016, "Years2014-2016.png", width=1920, height=1080)
+
 #Attempts to make a working code that matches other word
 #year2000.2002$match[!is.na(i)] <- nationgeo@data$NAME[i[!is.na(i)]]
 #nationgeo@data <- data.frame(nationgeo@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"match"]),])

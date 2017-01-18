@@ -54,6 +54,11 @@ year2012.2014 <- copy
 year2013.2015 <- copy
 year2014.2016 <- copy
 
+#Must correct democratic republic of congo, republic of korea, georgia, bosnia and herzgonivia, trinidad and tobago, united republic of tanzania
+year2000.2002$NAME <- as.character(year2000.2002$NAME)
+year2000.2002[year2000.2002$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
+
+
 #Adds the absolutechange colomn to each data frame
 year2000.2002$Change <- c(yearsdata$Students.Attending.in.2001.2002- yearsdata$Students.Attending.in.2000.2001)
 year2001.2003$Change <- c(yearsdata$Students.Attending.in.2002.2003- yearsdata$Students.Attending.in.2001.2002)
@@ -93,3 +98,5 @@ countrygeo2014.2016<- read_shape(file = countryshpfiles)
 countrygeo2000.2002@data<- data.frame(countrygeo2000.2002@data, year2000.2002[match(countrygeo2000.2002@data[,"NAME"], year2000.2002[,"NAME"]),])
 countrymap2000.2002 <- tm_shape(countrygeo2000.2002)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10), contrast=.7, id="name", title="Change in Students 2000-2002")
 countrymap2000.2002
+
+countrygeo2000.2002@data <- data.frame(nationgeo@data, year2000.2002[match(countrygeo2000.2002@data[,"NAME"], year2000.2002[,"match"]),])

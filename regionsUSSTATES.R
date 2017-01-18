@@ -139,7 +139,7 @@ nationgeo2013.2015@data<- data.frame(nationgeo2013.2015@data, year2013.2015[matc
 nationgeo2014.2016@data<- data.frame(nationgeo2014.2016@data, year2014.2016[match(nationgeo2014.2016@data[,"NAME"], year2014.2016[,"NAME"]),])
 
 
-#Code for the interative map
+#Code for the interative map and the legends, titles, and other map things
 tmap_mode("plot")
 tmap_mode("view")
 usmap2000.2002 <- tm_shape(nationgeo2000.2002)+ tm_polygons("Change", breaks = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf), palette = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10), contrast=.7, id="name", title="Change in Students 2000-2002") + tm_style_gray() + tm_format_World()

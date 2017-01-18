@@ -57,7 +57,7 @@ year2014.2016 <- copy
 #Must correct democratic republic of congo, republic of korea, georgia, bosnia and herzgonivia, trinidad and tobago, united republic of tanzania
 year2000.2002$NAME <- as.character(year2000.2002$NAME)
 year2000.2002[year2000.2002$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-
+year2000.2002[year2000.2002$NAME== ""]
 
 #Adds the absolutechange colomn to each data frame
 year2000.2002$Change <- c(yearsdata$Students.Attending.in.2001.2002- yearsdata$Students.Attending.in.2000.2001)

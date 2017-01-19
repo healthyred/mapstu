@@ -192,6 +192,3 @@ save_tmap(usmap2012.2014, "Years2012-2014.png", width=1920, height=1080)
 save_tmap(usmap2013.2015, "Years2013-2015.png", width=1920, height=1080)
 save_tmap(usmap2014.2016, "Years2014-2016.png", width=1920, height=1080)
 
-#Attempts to make a working code that matches other word
-#year2000.2002$match[!is.na(i)] <- nationgeo@data$NAME[i[!is.na(i)]]
-#nationgeo@data <- data.frame(nationgeo@data, year2000.2002[match(nationgeo@data[,"NAME"], year2000.2002[,"match"]),])

@@ -1,97 +1,89 @@
-#Reads in all the data in a clean format
+#' Cleaning Data
+#'
+#' Reads in all the data in a clean format
+#'
+#' @param x Clean text files that have been parsed into a readable format by
+#' the read years function
+#' @return a dataframe for the dataset given
+#' @export
+
 #We will read each 2000-2001 data as the year2000 for simpicities sake
+#After using readYears the first time, I changed some words that were
+#not cleaned properly manually, so this is not used again
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2000.2001_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2001.2002_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2002.2003_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2003.2004_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2004.2005_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2005.2006_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2006.2007_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2007.2008_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2008.2009_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2009.2010_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2010.2011_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2011.2012_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2012.2013_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2013.2014_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2014.2015_Clean2")
+#readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2015.2016_Clean2")
 
-#readYears("~/HutchinHill/2000-2001.rtf", "2000.2001_Clean2")
-#readYears("~/HutchinHill/2001-2002.rtf", "2001.2002_Clean2")
-#readYears("~/HutchinHill/2002-2003.rtf", "2002.2003_Clean2")
-#readYears("~/HutchinHill/2003-2004.rtf", "2003.2004_Clean2")
-#readYears("~/HutchinHill/2004-2005.rtf", "2004.2005_Clean2")
-#readYears("~/HutchinHill/2005-2006.rtf", "2005.2006_Clean2")
-#readYears("~/HutchinHill/2006-2007.rtf", "2006.2007_Clean2")
-#readYears("~/HutchinHill/2007-2008.rtf", "2007.2008_Clean2")
-#readYears("~/HutchinHill/2008-2009.rtf", "2008.2009_Clean2")
-#readYears("~/HutchinHill/2009-2010.rtf", "2009.2010_Clean2")
-#readYears("~/HutchinHill/2010-2011.rtf", "2010.2011_Clean2")
-#readYears("~/HutchinHill/2011-2012.rtf", "2011.2012_Clean2")
-#readYears("~/HutchinHill/2012-2013.rtf", "2012.2013_Clean2")
-#readYears("~/HutchinHill/2013-2014.rtf", "2013.2014_Clean2")
-#readYears("~/HutchinHill/2014-2015.rtf", "2014.2015_Clean2")
-#readYears("~/HutchinHill/2015-2016.rtf", "2015.2016_Clean2")
+#function that converts the dataset to a data frame
+datatodf <- function(x){
 
+  #Creates dataframes for all of the data
+  year <- read.csv(x, header = FALSE)
 
-#Creates dataframes for all of the data
-`2000` <- read.csv("~/HutchinHill/2000.2001_Clean", header=FALSE)
-`2001` <- read.csv("~/HutchinHill/2001.2002_Clean", header=FALSE)
-`2002` <- read.csv("~/HutchinHill/2002.2003_Clean", header=FALSE)
-`2003` <- read.csv("~/HutchinHill/2003.2004_Clean", header=FALSE)
-`2004` <- read.csv("~/HutchinHill/2004.2005_Clean", header=FALSE)
-`2005` <- read.csv("~/HutchinHill/2005.2006_Clean", header=FALSE)
-`2006` <- read.csv("~/HutchinHill/2006.2007_Clean", header=FALSE)
-`2007` <- read.csv("~/HutchinHill/2007.2008_Clean", header=FALSE)
-`2008` <- read.csv("~/HutchinHill/2008.2009_Clean", header=FALSE)
-`2009` <- read.csv("~/HutchinHill/2009.2010_Clean", header=FALSE)
-`2010` <- read.csv("~/HutchinHill/2010.2011_Clean", header=FALSE)
-`2011` <- read.csv("~/HutchinHill/2011.2012_Clean", header=FALSE)
-`2012` <- read.csv("~/HutchinHill/2012.2013_Clean", header=FALSE)
-`2013` <- read.csv("~/HutchinHill/2013.2014_Clean", header=FALSE)
-`2014` <- read.csv("~/HutchinHill/2014.2015_Clean", header=FALSE)
-`2015` <- read.csv("~/HutchinHill/2015.2016_Clean", header=FALSE)
+  #Renames all of the columns in the dataframe
+  newname <- c("State/Countries", "Number of Students")
+  names(year) <- c("State/Countries", "Students Attending in 2000-2001")
 
-#Renames all of the columns
-newname <- c("State/Countries", "Number of Students")
-names(`2000`) <- c("State/Countries", "Students Attending in 2000-2001")
-names(`2001`) <- c("State/Countries", "Students Attending in 2001-2002")
-names(`2002`) <- c("State/Countries", "Students Attending in 2002-2003")
-names(`2003`) <- c("State/Countries", "Students Attending in 2003-2004")
-names(`2004`) <- c("State/Countries", "Students Attending in 2004-2005")
-names(`2005`) <- c("State/Countries", "Students Attending in 2005-2006")
-names(`2006`) <- c("State/Countries", "Students Attending in 2006-2007")
-names(`2007`) <- c("State/Countries", "Students Attending in 2007-2008")
-names(`2008`) <- c("State/Countries", "Students Attending in 2008-2009")
-names(`2009`) <- c("State/Countries", "Students Attending in 2009-2010")
-names(`2010`) <- c("State/Countries", "Students Attending in 2010-2011")
-names(`2011`) <- c("State/Countries", "Students Attending in 2011-2012")
-names(`2012`) <- c("State/Countries", "Students Attending in 2012-2013")
-names(`2013`) <- c("State/Countries", "Students Attending in 2013-2014")
-names(`2014`) <- c("State/Countries", "Students Attending in 2014-2015")
-names(`2015`) <- c("State/Countries", "Students Attending in 2015-2016")
+  #Creating the data frames for all of these lists
+  yeardf <- data.frame(year)
 
-#Creating the data frames for all of these lists
-year2000 <-data.frame(`2000`)
-year2001 <-data.frame(`2001`)
-year2002 <-data.frame(`2002`)
-year2003 <-data.frame(`2003`)
-year2004 <-data.frame(`2004`)
-year2005 <-data.frame(`2005`)
-year2006 <-data.frame(`2006`)
-year2007 <-data.frame(`2007`)
-year2008 <-data.frame(`2008`)
-year2009 <-data.frame(`2009`)
-year2010 <-data.frame(`2010`)
-year2011 <-data.frame(`2011`)
-year2012 <-data.frame(`2012`)
-year2013 <-data.frame(`2013`)
-year2014 <-data.frame(`2014`)
-year2015 <-data.frame(`2015`)
+  #Returns the dataframe
+  return(yeardf)
+}
 
-#Creates a total data frame by states and countries
+#Creating the data frames
+year2000 <- datatodf("~/mapstu/inst/extdata/2000.2001_Clean")
+year2001 <- datatodf("~/mapstu/inst/extdata/2001.2002_Clean")
+year2002 <- datatodf("~/mapstu/inst/extdata/2002.2003_Clean")
+year2003 <- datatodf("~/mapstu/inst/extdata/2003.2004_Clean")
+year2004 <- datatodf("~/mapstu/inst/extdata/2004.2005_Clean")
+year2005 <- datatodf("~/mapstu/inst/extdata/2005.2006_Clean")
+year2006 <- datatodf("~/mapstu/inst/extdata/2006.2007_Clean")
+year2007 <- datatodf("~/mapstu/inst/extdata/2007.2008_Clean")
+year2008 <- datatodf("~/mapstu/inst/extdata/2008.2009_Clean")
+year2009 <- datatodf("~/mapstu/inst/extdata/2009.2010_Clean")
+year2010 <- datatodf("~/mapstu/inst/extdata/2010.2011_Clean")
+year2011 <- datatodf("~/mapstu/inst/extdata/2011.2012_Clean")
+year2012 <- datatodf("~/mapstu/inst/extdata/2012.2013_Clean")
+year2013 <- datatodf("~/mapstu/inst/extdata/2013.2014_Clean")
+year2014 <- datatodf("~/mapstu/inst/extdata/2014.2015_Clean")
+year2015 <- datatodf("~/mapstu/inst/extdata/2015.2016_Clean")
 
-totalframe<- merge(year2000, year2001, by= c("State.Countries"), all = TRUE)
-totalframe1<- merge(totalframe, year2002, by= c("State.Countries"), all = TRUE)
-totalframe2<- merge(totalframe1, year2003, by= c("State.Countries"), all = TRUE)
-totalframe3<- merge(totalframe2, year2004, by= c("State.Countries"), all = TRUE)
-totalframe4<- merge(totalframe3, year2005, by= c("State.Countries"), all = TRUE)
-totalframe5<- merge(totalframe4, year2006, by= c("State.Countries"), all = TRUE)
-totalframe6<- merge(totalframe5, year2007, by= c("State.Countries"), all = TRUE)
-totalframe7<- merge(totalframe6, year2008, by= c("State.Countries"), all = TRUE)
-totalframe8<- merge(totalframe7, year2009, by= c("State.Countries"), all = TRUE)
-totalframe9<- merge(totalframe8, year2010, by= c("State.Countries"), all = TRUE)
-totalframe10<- merge(totalframe9, year2011, by= c("State.Countries"), all = TRUE)
-totalframe11<- merge(totalframe10, year2012, by= c("State.Countries"), all = TRUE)
-totalframe12<- merge(totalframe11, year2013, by= c("State.Countries"), all = TRUE)
-totalframe13<- merge(totalframe12, year2014, by= c("State.Countries"), all = TRUE)
-totalframe14<- merge(totalframe13, year2015, by= c("State.Countries"), all = TRUE)
-totalframe14[is.na(totalframe14)] <- 0
-save(totalframe14, file = "completedata2000.2015.Rda")
+#Creates a total data frame by states and countries using recursion
+totaldata <- function(){
+  totalframe <- merge(year2000, year2001, by= c("State.Countries"), all = TRUE)
+  totalframe1 <- merge(totalframe, year2002, by= c("State.Countries"), all = TRUE)
+  totalframe2 <- merge(totalframe1, year2003, by= c("State.Countries"), all = TRUE)
+  totalframe3 <- merge(totalframe2, year2004, by= c("State.Countries"), all = TRUE)
+  totalframe4 <- merge(totalframe3, year2005, by= c("State.Countries"), all = TRUE)
+  totalframe5 <- merge(totalframe4, year2006, by= c("State.Countries"), all = TRUE)
+  totalframe6 <- merge(totalframe5, year2007, by= c("State.Countries"), all = TRUE)
+  totalframe7 <- merge(totalframe6, year2008, by= c("State.Countries"), all = TRUE)
+  totalframe8 <- merge(totalframe7, year2009, by= c("State.Countries"), all = TRUE)
+  totalframe9 <- merge(totalframe8, year2010, by= c("State.Countries"), all = TRUE)
+  totalframe10 <- merge(totalframe9, year2011, by= c("State.Countries"), all = TRUE)
+  totalframe11 <- merge(totalframe10, year2012, by= c("State.Countries"), all = TRUE)
+  totalframe12 <- merge(totalframe11, year2013, by= c("State.Countries"), all = TRUE)
+  totalframe13 <- merge(totalframe12, year2014, by= c("State.Countries"), all = TRUE)
+  totalframe14 <- merge(totalframe13, year2015, by= c("State.Countries"), all = TRUE)
+  totalframe14[is.na(totalframe14)] <- 0
+  save(totalframe14, file = "completedata2000.2015.Rda")
+  yearsdata <- totalframe14
+  return(yearsdata)
+}
 
-yearsdata <- totalframe14
+#Creates the total dataframe with respect to the names assigned above
+yearsdata <- totaldata()

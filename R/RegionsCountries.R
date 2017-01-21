@@ -56,31 +56,31 @@ year2014.2016 <- copy
 #Must correct democratic republic of congo, republic of korea, georgia, bosnia and herzgonivia, trinidad and tobago, united republic of tanzania
 correct <- function(x){
   x$NAME <- as.character(x$NAME)
-  x[x$NAME== "Districtof Columbia", 'NAME'] <- "District of Columbia"
-  x[x$NAME== "Trinidadand Tobago", 'NAME'] <- "Trinidad and Tobago"
-  x[x$NAME== "Muscatand Oman", 'NAME'] <- "Oman"
-  x[x$NAME== "Republicof Korea", 'NAME'] <- "Trinidad and Tobago"
-  x[x$NAME== "Georgia", 'NAME'] <- "Georgia(State)"
-  x[x$NAME== "Georgia(Country)", 'NAME'] <- "Georgia"
-  x[x$NAME== "Laos", 'NAME'] <- "Lao People's Democratic Republic"
+  x[x$NAME == "Districtof Columbia", 'NAME'] <- "District of Columbia"
+  x[x$NAME == "Trinidadand Tobago", 'NAME'] <- "Trinidad and Tobago"
+  x[x$NAME == "Muscatand Oman", 'NAME'] <- "Oman"
+  x[x$NAME == "Republicof Korea", 'NAME'] <- "Trinidad and Tobago"
+  x[x$NAME == "Georgia", 'NAME'] <- "Georgia(State)"
+  x[x$NAME == "Georgia(Country)", 'NAME'] <- "Georgia"
+  x[x$NAME == "Laos", 'NAME'] <- "Lao People's Democratic Republic"
   return(x)
 }
 
-year2000.2002<- correct(year2000.2002)
-year2001.2003<- correct(year2001.2003)
-year2002.2004<- correct(year2002.2004)
-year2003.2005<- correct(year2003.2005)
-year2004.2006<- correct(year2004.2006)
-year2005.2007<- correct(year2005.2007)
-year2006.2008<- correct(year2006.2008)
-year2007.2009<- correct(year2007.2009)
-year2008.2010<- correct(year2008.2010)
-year2009.2011<- correct(year2009.2011)
-year2010.2012<- correct(year2010.2012)
-year2011.2013<- correct(year2011.2013)
-year2012.2014<- correct(year2012.2014)
-year2013.2015<- correct(year2013.2015)
-year2014.2016<- correct(year2014.2016)
+year2000.2002 <- correct(year2000.2002)
+year2001.2003 <- correct(year2001.2003)
+year2002.2004 <- correct(year2002.2004)
+year2003.2005 <- correct(year2003.2005)
+year2004.2006 <- correct(year2004.2006)
+year2005.2007 <- correct(year2005.2007)
+year2006.2008 <- correct(year2006.2008)
+year2007.2009 <- correct(year2007.2009)
+year2008.2010 <- correct(year2008.2010)
+year2009.2011 <- correct(year2009.2011)
+year2010.2012 <- correct(year2010.2012)
+year2011.2013 <- correct(year2011.2013)
+year2012.2014 <- correct(year2012.2014)
+year2013.2015 <- correct(year2013.2015)
+year2014.2016 <- correct(year2014.2016)
 
 #Adds the absolutechange colomn to each data frame
 year2000.2002$Change <- c(yearsdata$Students.Attending.in.2001.2002 - yearsdata$Students.Attending.in.2000.2001)
@@ -135,8 +135,8 @@ countrygeo2013.2015@data <- data.frame(countrygeo2013.2015@data, year2013.2015[m
 countrygeo2014.2016@data <- data.frame(countrygeo2014.2016@data, year2014.2016[match(countrygeo2014.2016@data[,"NAME"], year2014.2016[,"NAME"]),])
 
 #Creates the Legend and the map titles for each map
-break1 = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf)
-RGcolors = c(red10,red9,red8,red7,red6,red5,red4,red3,red2,red1, gray, green1,green2,green3,green4,green5,green6,green7,green8,green9,green10)
+break1 = c(-Inf , -27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf)
+RGcolors = c(red10, red9, red8, red7, red6, red5, red4, red3, red2, red1, gray, green1, green2, green3, green4, green5, green6, green7, green8, green9, green10)
 countrymap2000.2002 <- tm_shape(countrygeo2000.2002)+ tm_polygons("Change", breaks = break1, palette = RGcolors, contrast=.7, id="name", title="Change in Students 2000-2002")
 countrymap2001.2003 <- tm_shape(countrygeo2001.2003)+ tm_polygons("Change", breaks = break1, palette = RGcolors, contrast=.7, id="name", title="Change in Students 2001-2003")
 countrymap2002.2004 <- tm_shape(countrygeo2002.2004)+ tm_polygons("Change", breaks = break1, palette = RGcolors, contrast=.7, id="name", title="Change in Students 2002-2004")

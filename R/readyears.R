@@ -1,4 +1,12 @@
-
+#' Reading the txt file
+#'
+#' Takes in the William's Geographical Distribution data and returns a
+#' clean format (Area, Number) that can be read into a data frame.
+#'
+#' @param dataset A Geographical Distribution dataset
+#' @param name The name the cleaned dataset is saved to
+#' @return A cleaned dataset
+#' @export
 #function to reformat majority of the text into a csv format
 readYears <- function(dataset, name){
   input <- readLines(dataset, warn = FALSE)

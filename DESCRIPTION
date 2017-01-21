@@ -1,8 +1,16 @@
-Package: HutchinHiil
+Package: mapstu
 Type: Package
-Title: What the Package Does (Title Case)
+Title: A Cloropleth Map of Williams Students
 Version: 0.1.0
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
+Description: This package first sorts data of which states, or countries that students
+    come from each year at Williams College. Then it creates a data frame for ease of
+    access. The next scripts find the changes in student acceptance from each area
+    and creates a cloropleth map with different shades of red and green, representing
+    respective decreases or increases in student acceptance per year.
 License: What license is it under?
 LazyData: TRUE
+Imports:
+    leaflet,
+    tmap,
+    tmaptools

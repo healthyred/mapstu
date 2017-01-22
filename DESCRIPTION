@@ -14,3 +14,4 @@ Imports:
     leaflet,
     tmap,
     tmaptools
+RoxygenNote: 5.0.1.9000

@@ -6,7 +6,7 @@
 #' @param currentyear The vector for the most current year
 #' @param oldyear The vector for the year you want to compare to
 #' @param name The name that the map should be saved to
-#' @param title, The title of the plot
+#' @param title The title of the plot
 #' @return a s4 object that has the difference of the datasets mapped to it
 #'
 #' @import tmap leaflet

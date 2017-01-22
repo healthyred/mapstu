@@ -14,12 +14,11 @@
 #'
 #this is the script to describe the classes of the regions
 #plans to take in the data set
-library("tmap")
-library("leaflet")
-library("tmaptools")
-
 
 usmap <- function(currentyear, oldyear, namesave, title){
+  library(leaflet)
+  library(tmap)
+  library(tmaptools)
 
   #List of colors for convenience(lightestshade to darkest shade) Can use this for the created palette
   green1 <- "#dbefd3"

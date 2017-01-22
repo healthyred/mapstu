@@ -9,16 +9,14 @@
 #' @param title The title of the plot
 #' @return a s4 object that has the difference of the datasets mapped to it
 #'
-#' @import tmap leaflet
+#' @import leaflet tmap tmaptools
 #' @export
 #'
 
-library("tmap")
-library("leaflet")
-library("tmaptools")
-
 countrymap <- function(currentyear, oldyear, namesave, title){
-
+  library(tmap)
+  library(tmaptools)
+  library(leaflet)
   #List of colors for convenience(lightestshade to darkest shade) Can use this for the created palette
   green1 <- "#dbefd3"
   green2 <- "#c1eeb4"
@@ -80,7 +78,20 @@ countrymap <- function(currentyear, oldyear, namesave, title){
 }
 
 #Creates the desired maps from year to year
-countrymap2013.2014 <- countrymap(yearsdata$X2014, yearsdata$X2013, "usmap2002.2003.png", "Change in Students 2002-2003")
-
-
+countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, "countrymap2000.2001.png", "Change in Students 2000-2001")
+countrymap2001.2002 <- countrymap(yearsdata$X2002, yearsdata$X2001, "countrymap2001.2002.png", "Change in Students 2001-2002")
+countrymap2002.2003 <- countrymap(yearsdata$X2003, yearsdata$X2002, "countrymap2002.2003.png", "Change in Students 2002-2003")
+countrymap2003.2004 <- countrymap(yearsdata$X2004, yearsdata$X2003, "countrymap2003.2004.png", "Change in Students 2003-2004")
+countrymap2004.2005 <- countrymap(yearsdata$X2005, yearsdata$X2004, "countrymap2004.2005.png", "Change in Students 2004-2005")
+countrymap2005.2006 <- countrymap(yearsdata$X2006, yearsdata$X2005, "countrymap2005.2006.png", "Change in Students 2005-2006")
+countrymap2006.2007 <- countrymap(yearsdata$X2007, yearsdata$X2006, "countrymap2006.2007.png", "Change in Students 2006-2007")
+countrymap2007.2008 <- countrymap(yearsdata$X2008, yearsdata$X2007, "countrymap2007.2008.png", "Change in Students 2007-2008")
+countrymap2008.2009 <- countrymap(yearsdata$X2009, yearsdata$X2008, "countrymap2008.2009.png", "Change in Students 2008-2009")
+countrymap2009.2010 <- countrymap(yearsdata$X2010, yearsdata$X2009, "countrymap2009.2010.png", "Change in Students 2009-2010")
+countrymap2010.2011 <- countrymap(yearsdata$X2011, yearsdata$X2010, "countrymap2010.2011.png", "Change in Students 2010-2011")
+countrymap2011.2012 <- countrymap(yearsdata$X2012, yearsdata$X2011, "countrymap2011.2012.png", "Change in Students 2011-2012")
+countrymap2012.2013 <- countrymap(yearsdata$X2013, yearsdata$X2012, "countrymap2012.2013.png", "Change in Students 2012-2013")
+countrymap2013.2014 <- countrymap(yearsdata$X2014, yearsdata$X2013, "countrymap2013.2014.png", "Change in Students 2013-2014")
+countrymap2014.2015 <- countrymap(yearsdata$X2015, yearsdata$X2014, "countrymap2014.2015.png", "Change in Students 2014-2015")
+countrymap2015.2016 <- countrymap(yearsdata$X2016, yearsdata$X2015, "countrymap2015.2016.png", "Change in Students 2015-2016")
 #Calls the maps

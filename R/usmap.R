@@ -1,17 +1,17 @@
-#' StateRegions
+#' US Map
 #'
 #' Takes in two years worth of datasets and returns a map of the
 #' US States that maps the difference of the two datasets
 #'
 #' @param currentyear The vector of a dataset for the most current year
 #' @param oldyear The vector of a dataset for the year you want to compare to
-#' @param name The name that the map should be saved to
-#' @param title The title of the plot
+#' @param title The title of the plot and the name which the plot is saved to
+#' @param save Whether you want to save or not
 #' @return a s4 object that has the difference of the datasets mapped to it
 #'
 #' @examples
 #' ##Creating the map of the US with data from 2001 and 2002
-#' usmap2000.2002 <- usmap(yearsdata$X2001, yearsdata$X2000, "usmap2000.2001.png", "Change in Students 2000-2001")
+#' usmap2000.2002 <- usmap(yearsdata$X2001, yearsdata$X2000, "Change in Students 2000-2001")
 #'
 #' @import tmap leaflet
 #' @export
@@ -20,7 +20,7 @@
 ##This is a function that takes in two years of the William's college students Geographical Distribution data
 ##and returns a plot that maps RG values that represents the difference between the designated two years
 
-usmap <- function(currentyear, oldyear, namesave, title){
+usmap <- function(currentyear, oldyear, title, save = FALSE){
   library(leaflet)
   library(tmap)
   library(tmaptools)
@@ -79,7 +79,10 @@ usmap <- function(currentyear, oldyear, namesave, title){
                                                 title= title) + tm_style_gray() + tm_format_World()
 
   ##Saving the map
-  save_tmap(statemap, namesave)
+  if (save == TRUE){
+    save_tmap(statemap, paste(title, ".png", sep = ""))
+  }
+
 
   ##Returns the desired s4 object
   return(statemap)

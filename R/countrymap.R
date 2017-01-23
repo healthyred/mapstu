@@ -1,12 +1,12 @@
-#' CountryRegions
+#' Country map
 #'
 #' Takes in two years worth of datasets and returns a map of the
 #' international countries that maps the difference of the two datasets
 #'
-#' @param currentyear The vector for the most current year
-#' @param oldyear The vector for the year you want to compare to
-#' @param name The name that the map should be saved to
-#' @param title The title of the plot
+#' @param currentyear The vector of a dataset for the most current year
+#' @param oldyear The vector of a dataset for the year you want to compare to
+#' @param title The title of the plot and the name that the plot is saved to
+#' @param save Whether you want to save or not
 #' @return a s4 object that has the difference of the datasets mapped to it
 #'
 #' @examples
@@ -17,7 +17,7 @@
 #' @export
 #'
 
-countrymap <- function(currentyear, oldyear, namesave, title){
+countrymap <- function(currentyear, oldyear, title, save = FALSE){
   library(tmap)
   library(tmaptools)
   library(leaflet)
@@ -56,7 +56,8 @@ countrymap <- function(currentyear, oldyear, namesave, title){
   countryshpfiles ="~/mapstu/inst/extdata/TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp"
   countrygeo <- read_shape(file = countryshpfiles)
 
-  ##Must correct democratic republic of congo, republic of korea, georgia, bosnia and herzgonivia, trinidad and tobago, united republic of tanzania
+  ##Must correct democratic republic of congo, republic of korea, georgia,
+  ##bosnia and herzgonivia, trinidad and tobago, united republic of tanzania
   copy$NAME <- as.character(copy$NAME)
   copy[copy$NAME == "Districtof Columbia", 'NAME'] <- "District of Columbia"
   copy[copy$NAME == "Trinidadand Tobago", 'NAME'] <- "Trinidad and Tobago"
@@ -71,11 +72,20 @@ countrymap <- function(currentyear, oldyear, namesave, title){
 
   ##Code for the interative map and the legends, titles, and other map things
   break1 = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf)
-  RGcolors = c(red10, red9, red8, red7, red6, red5, red4, red3, red2, red1, gray, green1, green2, green3, green4, green5, green6, green7, green8, green9, green10)
-  countrymap <- tm_shape(countrygeo) + tm_polygons("Change", breaks = break1, palette = RGcolors , contrast=.7, id="name", title= title) + tm_style_gray() + tm_format_World()
+  RGcolors = c(red10, red9, red8, red7, red6, red5, red4, red3, red2, red1,
+               gray, green1, green2, green3, green4, green5, green6, green7, green8, green9, green10)
+  countrymap <- tm_shape(countrygeo) + tm_polygons("Change",
+                                                   breaks = break1,
+                                                   palette = RGcolors,
+                                                   contrast=.7,
+                                                   id="name",
+                                                   title= title) + tm_style_gray() + tm_format_World()
 
   ##Saving the map
-  save_tmap(countrymap, namesave)
+  if (save == TRUE){
+    save_tmap(countrymap, paste(title, ".png", sep = ""))
+  }
+
 
   ##Returns the desired s4 object
   return(countrymap)

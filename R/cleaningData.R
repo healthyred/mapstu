@@ -1,12 +1,12 @@
-#' Cleaning Data
+#' @title Cleaning Data
 #'
-#' Reads in all the data in a clean format
+#' @description Reads in all the data in a clean format
 #'
 #' @param x Clean text files that have been parsed into a readable format by
-#' the read years function
+#'     the read years function
 #' @param year The fall year of the dataset
 #' @return a dataframe for the dataset given
-#' @export
+#'
 
 #We will read each 2000-2001 data as the year2000 for simpicities sake
 #After using readYears the first time, I changed some words that were
@@ -28,23 +28,23 @@
 #readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2014.2015_Clean2")
 #readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2015.2016_Clean2")
 
-#function that converts the dataset to a data frame
+##function that converts the dataset to a data frame
 datatodf <- function(x, name){
 
-  #Creates dataframes for all of the data
+  ##Creates dataframes for all of the data
   year <- read.csv(x, header = FALSE)
 
-  #Renames all of the columns in the dataframe
+  ##Renames all of the columns in the dataframe
   names(year) <- c("State/Countries", name)
 
-  #Creating the data frames for all of these lists
+  ##Creating the data frames for all of these lists
   yeardf <- data.frame(year)
 
-  #Returns the dataframe
+  ##Returns the dataframe
   return(yeardf)
 }
 
-#Creating the data frames
+##Creating the data frames
 year2000 <- datatodf("~/mapstu/inst/extdata/2000.2001_Clean", "2000")
 year2001 <- datatodf("~/mapstu/inst/extdata/2001.2002_Clean", "2001")
 year2002 <- datatodf("~/mapstu/inst/extdata/2002.2003_Clean", "2002")
@@ -62,7 +62,7 @@ year2013 <- datatodf("~/mapstu/inst/extdata/2013.2014_Clean", "2013")
 year2014 <- datatodf("~/mapstu/inst/extdata/2014.2015_Clean", "2014")
 year2015 <- datatodf("~/mapstu/inst/extdata/2015.2016_Clean", "2015")
 
-#Creates a total data frame by states and countries using recursion
+##Creates a total data frame by states and countries using recursion
 totaldata <- function(){
   totalframe <- merge(year2000, year2001, by= c("State.Countries"), all = TRUE)
   totalframe1 <- merge(totalframe, year2002, by= c("State.Countries"), all = TRUE)
@@ -80,10 +80,9 @@ totaldata <- function(){
   totalframe13 <- merge(totalframe12, year2014, by= c("State.Countries"), all = TRUE)
   totalframe14 <- merge(totalframe13, year2015, by= c("State.Countries"), all = TRUE)
   totalframe14[is.na(totalframe14)] <- 0
-  save(totalframe14, file = "completedata2000.2015.Rda")
   yearsdata <- totalframe14
   return(yearsdata)
 }
 
-#Creates the total dataframe with respect to the names assigned above
+##Creates the total dataframe with respect to the names assigned above
 yearsdata <- totaldata()

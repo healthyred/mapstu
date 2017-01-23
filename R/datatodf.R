@@ -8,9 +8,9 @@
 #' @return a dataframe for the dataset given
 #'
 
-#We will read each 2000-2001 data as the year2000 for simpicities sake
-#After using readYears the first time, I changed some words that were
-#not cleaned properly manually, so this is not used again
+##We will read each 2000-2001 data as the year2000 for simpicities sake
+##After using readYears the first time, I changed some words that were
+##not cleaned properly manually, so this is not used again
 #readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2000.2001_Clean2")
 #readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2001.2002_Clean2")
 #readYears("~/mapstu/inst/extdata/2000-2001.rtf", "2002.2003_Clean2")

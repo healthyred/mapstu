@@ -22,3 +22,8 @@ a s4 object that has the difference of the datasets mapped to it
 Takes in two years worth of datasets and returns a map of the
 international countries that maps the difference of the two datasets
 }
+\examples{
+##Creating the map of the data with data from 2001 and 2000
+countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, "countrymap2000.2001.png", "Change in Students 2000-2001")
+
+}

@@ -7,20 +7,21 @@
 #' @param oldyear The vector of a dataset for the year you want to compare to
 #' @param title The title of the plot and the name which the plot is saved to
 #' @param save Whether you want to save or not
+#' @param interactive Chooses the interactive mode in viewer, or just the default plot
 #' @return a s4 object that has the difference of the datasets mapped to it
 #'
 #' @examples
 #' ##Creating the map of the US with data from 2001 and 2002
-#' usmap2000.2002 <- usmap(yearsdata$X2001, yearsdata$X2000, "Change in Students 2000-2001")
+#' usmap2000.2002 <- usmap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001")
 #'
-#' @import tmap leaflet
+#' @import leaflet tmap tmaptools
 #' @export
 #'
 
 ##This is a function that takes in two years of the William's college students Geographical Distribution data
 ##and returns a plot that maps RG values that represents the difference between the designated two years
 
-usmap <- function(currentyear, oldyear, title, save = FALSE){
+usmap <- function(currentyear, oldyear, title = "", save = FALSE, interactive = FALSE){
   library(leaflet)
   library(tmap)
   library(tmaptools)
@@ -73,9 +74,10 @@ usmap <- function(currentyear, oldyear, title, save = FALSE){
                gray, green1, green2, green3, green4, green5, green6, green7, green8, green9, green10)
   statemap <- tm_shape(nationgeo) + tm_polygons("Change",
                                                 breaks = break1,
-                                                palette = RGcolors ,
+                                                palette = RGcolors,
                                                 contrast=.7,
                                                 id="name",
+                                                auto.palette.mapping=FALSE,
                                                 title= title) + tm_style_gray() + tm_format_World()
 
   ##Saving the map
@@ -83,6 +85,13 @@ usmap <- function(currentyear, oldyear, title, save = FALSE){
     save_tmap(statemap, paste(title, ".png", sep = ""))
   }
 
+  ##Choosing how the map is viewed, either plot or interactive mode
+  if (interactive == TRUE){
+    tmap_mode("view")
+  }
+  else{
+    tmap_mode("plot")
+  }
 
   ##Returns the desired s4 object
   return(statemap)

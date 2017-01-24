@@ -2,18 +2,21 @@
 % Please edit documentation in R/countrymap.R
 \name{countrymap}
 \alias{countrymap}
-\title{CountryRegions}
+\title{Country map}
 \usage{
-countrymap(currentyear, oldyear, namesave, title)
+countrymap(currentyear, oldyear, title = "", save = FALSE,
+  interactive = FALSE)
 }
 \arguments{
-\item{currentyear}{The vector for the most current year}
+\item{currentyear}{The vector of a dataset for the most current year}
 
-\item{oldyear}{The vector for the year you want to compare to}
+\item{oldyear}{The vector of a dataset for the year you want to compare to}
 
-\item{title}{The title of the plot}
+\item{title}{The title of the plot and the name that the plot is saved to}
 
-\item{name}{The name that the map should be saved to}
+\item{save}{Whether you want to save or not}
+
+\item{interactive}{Chooses the interactive mode in viewer, or just the default plot}
 }
 \value{
 a s4 object that has the difference of the datasets mapped to it
@@ -24,6 +27,6 @@ international countries that maps the difference of the two datasets
 }
 \examples{
 ##Creating the map of the data with data from 2001 and 2000
-countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, "countrymap2000.2001.png", "Change in Students 2000-2001")
+countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001")
 
 }

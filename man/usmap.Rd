@@ -2,18 +2,20 @@
 % Please edit documentation in R/usmap.R
 \name{usmap}
 \alias{usmap}
-\title{StateRegions}
+\title{US Map}
 \usage{
-usmap(currentyear, oldyear, namesave, title)
+usmap(currentyear, oldyear, title = "", save = FALSE, interactive = FALSE)
 }
 \arguments{
 \item{currentyear}{The vector of a dataset for the most current year}
 
 \item{oldyear}{The vector of a dataset for the year you want to compare to}
 
-\item{title}{The title of the plot}
+\item{title}{The title of the plot and the name which the plot is saved to}
 
-\item{name}{The name that the map should be saved to}
+\item{save}{Whether you want to save or not}
+
+\item{interactive}{Chooses the interactive mode in viewer, or just the default plot}
 }
 \value{
 a s4 object that has the difference of the datasets mapped to it
@@ -24,6 +26,6 @@ US States that maps the difference of the two datasets
 }
 \examples{
 ##Creating the map of the US with data from 2001 and 2002
-usmap2000.2002 <- usmap(yearsdata$X2001, yearsdata$X2000, "usmap2000.2001.png", "Change in Students 2000-2001")
+usmap2000.2002 <- usmap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001")
 
 }

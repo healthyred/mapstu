@@ -7,17 +7,18 @@
 #' @param oldyear The vector of a dataset for the year you want to compare to
 #' @param title The title of the plot and the name that the plot is saved to
 #' @param save Whether you want to save or not
+#' @param interactive Chooses the interactive mode in viewer, or just the default plot
 #' @return a s4 object that has the difference of the datasets mapped to it
 #'
 #' @examples
 #' ##Creating the map of the data with data from 2001 and 2000
-#' countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, "countrymap2000.2001.png", "Change in Students 2000-2001")
+#' countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001")
 #'
 #' @import leaflet tmap tmaptools
 #' @export
 #'
 
-countrymap <- function(currentyear, oldyear, title, save = FALSE){
+countrymap <- function(currentyear, oldyear, title = "", save = FALSE, interactive = FALSE){
   library(tmap)
   library(tmaptools)
   library(leaflet)
@@ -79,6 +80,7 @@ countrymap <- function(currentyear, oldyear, title, save = FALSE){
                                                    palette = RGcolors,
                                                    contrast=.7,
                                                    id="name",
+                                                   auto.palette.mapping=FALSE,
                                                    title= title) + tm_style_gray() + tm_format_World()
 
   ##Saving the map
@@ -86,6 +88,13 @@ countrymap <- function(currentyear, oldyear, title, save = FALSE){
     save_tmap(countrymap, paste(title, ".png", sep = ""))
   }
 
+  ##Choosing how the map is viewed, either plot or interactive mode
+  if (interactive == TRUE){
+    tmap_mode("view")
+  }
+  else{
+    tmap_mode("plot")
+  }
 
   ##Returns the desired s4 object
   return(countrymap)

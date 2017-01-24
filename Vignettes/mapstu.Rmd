@@ -8,12 +8,13 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-**Abstract** The **mapstu** package uses the geographical distribution data published in the Williams Course Catalogs each year to compare which states/ countries students are accepted from each year. This is done for fifteen years from 2000 to 2015 by pulling data from text versions of the geographical distribution data. The core component of the package creates a cloropleth map of the difference of students accepted in each area between any two years of the dataset. A printed comparison of the two years is also produced to understand the vizualization of the data. 
+**Abstract** The **mapstu** package uses the geographical distribution data of the entire Williams College student population published in the Williams Course Catalogs to compare which states/ countries students are from each year. This is done for fifteen years from 2000 to 2015 by pulling data from text versions of the geographical distribution data. The core component of the package creates a cloropleth map of the difference of student geopgraphical distribution between any two years of the dataset. A printed comparison of the two years is also produced to understand the vizualization of the data. 
 
 ## Introduction
 
 The geographical distribution of students from Williams College is an interesting dataset that can show the diversity of the student population. A visualization of the dataset can easily present the student diversity of the college, and the changes of where students are accepted from each year. The package **mapstu** pulls and cleans data from the yearly Williams College Course Catalogs and organizes the data into a readable csv file. Then the package reads the csv files into a dataframe and combines all the dataframes from all years merging into a complete dataframe which can be easily manipulated.   
-    The vectors of the dataframe, or years, can be called on and manipulated into cloropleth maps with the help of the S4 classes in R. There are two diffferent S4 datasets in the package. One includes all of the countries in the world, and the other includes all U.S. owned territories. The years can be combined with either of the S4 datasets, and then plotted. The package also includes another function which plots the change between any two years, and creates a plot where gradients of red and green represent decreases and increases. 
+
+The vectors of the dataframe, or years, can be called on and manipulated into cloropleth maps with the help of the S4 classes in R. There are two diffferent S4 datasets in the package. One includes all of the countries in the world, and the other includes all U.S. owned territories. The years can be combined with either of the S4 datasets, and then plotted. The package also includes another function which plots the change between any two years, and creates a plot where gradients of red and green represent decreases and increases. 
 
 ## Data
 

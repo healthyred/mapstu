@@ -11,6 +11,8 @@
 #' @param year2 The data vector is that will be subtracted from
 #' @return a comparison summary between year 1 and year 2
 #'
+#' @example
+#' comparison(yearsdata$X2000, yearsdata$X2015)
 #' @export
 
 
@@ -23,48 +25,6 @@ comparison <- function(year1, year2){
 
   ##Beginning sorting of international and domestic students
   nationshapefile <- "~/mapstu/inst/extdata/cb_2015_us_state_20m/cb_2015_us_state_20m.shp"
-  countryshpfiles ="~/mapstu/inst/extdata/TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp"
-
-  ##This is a helper function that sorts out the sum of international students in each year
-  international <- function(year1, year2){
-
-    ##reads in the internation shapefiles
-    intmapgeo <- read_shape(file = countryshpfiles)
-
-    ##Must correct democratic republic of congo, republic of korea, georgia,
-    ##bosnia and herzgonivia, trinidad and tobago, united republic of tanzania
-    copy$NAME <- as.character(copy$NAME)
-    copy[copy$NAME == "Districtof Columbia", 'NAME'] <- "District of Columbia"
-    copy[copy$NAME == "Trinidadand Tobago", 'NAME'] <- "Trinidad and Tobago"
-    copy[copy$NAME == "Muscatand Oman", 'NAME'] <- "Oman"
-    copy[copy$NAME == "Republicof Korea", 'NAME'] <- "Trinidad and Tobago"
-    copy[copy$NAME == "Georgia", 'NAME'] <- "Georgia(State)"
-    copy[copy$NAME == "Georgia(Country)", 'NAME'] <- "Georgia"
-    copy[copy$NAME == "Laos", 'NAME'] <- "Lao People's Democratic Republic"
-
-    ##intializes copies of the data frame
-    copy1 <- copy
-    copy2 <- copy
-
-    ##adds in the data of students from each year into the dataframe
-    copy1$Students <- c(year1)
-    copy2$Students <- c(year2)
-
-    ##appends both years of data to the S4 class
-    intmapgeo@data <- data.frame(intmapgeo@data, copy1[match(intmapgeo@data[,"NAME"], copy1[,"NAME"]),])
-    intmapgeo@data <- data.frame(intmapgeo@data, copy2[match(intmapgeo@data[,"NAME"], copy2[,"NAME"]),])
-
-    ##pulls the sum of the international data
-    numintyear1 <- sum(intmapgeo$Students, na.rm = TRUE)
-    numintyear2 <- sum(intmapgeo$Students.1, na.rm = TRUE)
-
-    return(c(numintyear1, numintyear2))
-  }
-
-  ##Calculates the approximate number of international students at Williams in each year
-  int <- international(year1, year2)
-  intstuyear1 <- int[1]
-  intstuyear2 <- int[2]
 
   ##This is a domestic function that sorts out the sum of domestic students in each year
   domestic <- function(year1, year2){
@@ -103,6 +63,10 @@ comparison <- function(year1, year2){
   total1 <- sum(c(year1))
   total2 <- sum(c(year2))
 
+  ##Calculates the approximate number of international students at Williams in each year
+  intstuyear1 <- total1 - domyear1
+  intstuyear2 <- total2 - domyear2
+
   ##Adds the absolutechange colomn to each data frame
   copy$Change <- c(year1 - year2)
 
@@ -115,6 +79,7 @@ comparison <- function(year1, year2){
   print("Min Change:")
   minchange <- copy[which.min(copy$Change),]
   print(minchange)
+
   ##Calculates the mean change of each year vector
   meanchange <- mean(c(year1-year2))
 

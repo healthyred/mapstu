@@ -18,5 +18,7 @@ a comparison summary between year 1 and year 2
 Provides comparison summary data of the students that were in each class.
     For example, the mean change of the number of students across all areas
     or the total number of students accepted each year, or the percent change of students
-    from year to year
+    from year to year. The code is still somewhat buggy as there are territories mentioned
+    in the Williams data that are not official countries or states, such as Palestine territory occuppie.
+    Thus the (#ofinternationals) + (#ofdomestics) do not always equal (#oftotalstudents).
 }

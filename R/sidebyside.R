@@ -13,14 +13,22 @@
 #' @param US choice of mapping US territories or mapping international countries
 #' @param save Whether you want to save or not
 #' @param interactive Chooses the interactive mode in viewer, or just the default plot
+#' @param change Selects whether the year vectors given are differences between years,
+#'     or just comparing dirrect yearly geographical distributions
 #' @return sidebyside S4 object that has the different year datasets mapped to it
 #'
 #' @examples
 #' ##Creating a state map of the data with data from 2001
-#' usmap2001 <- worldplot(yearsdata$X2001, title = "Change in Students 2000-2001")
+#' usmap2001 <- sidebyside(yearsdata$X2001, yearsdata$X2002, title1 = "2001", title2 = "2002")
 #'
 #' ##Creating an international map with interactive view
-#' worldmap <- worldplot(yearsdata$X2014, title = "Change in Students 2000-2001", interactive = TRUE)
+#' worldmap <- sidebyside(yearsdata$X2001, yearsdata$X2002, title1 = "2001", title2 = "2002", US = FALSE)
+#'
+#' ##Creating a sidebyside map with change
+#' usmapofdifferences <- sidebyside(yearsdata$X2001-yearsdata$X2000, yearsdata$X2015-yearsdata$X2014,
+#'                                                                  title1 = "Change from 2000-2001",
+#'                                                                  title2 = "Change from 2014-2015",
+#'                                                                                    change = TRUE)
 #'
 #' @import leaflet tmap tmaptools
 #' @export
@@ -40,29 +48,6 @@ sidebyside <- function(year1, year2,
   library(tmap)
   library(tmaptools)
 
-  ##List of colors for convenience(lightestshade to darkest shade) Can use this for the created palette
-  green1 <- "#dbefd3"
-  green2 <- "#c1eeb4"
-  green3 <- "#9de686"
-  green4 <- "#78dd54"
-  green5 <- "#4fc431"
-  green6 <- "#47a426"
-  green7 <- "#37801d"
-  green8 <- "#265b12"
-  green9 <- "#1b4109"
-  green10 <- "#081f02"
-  gray <- "white"
-  red1 <- "#ffcacb"
-  red2 <- "#ff7f80"
-  red3 <- "#ff3235"
-  red4 <- "#ff4c4e"
-  red5 <- "#ff5656"
-  red6 <- "#f90204"
-  red7 <- "#e60000"
-  red8 <- "#cd0002"
-  red9 <- "#b20001"
-  red10 <- "#800000"
-
   ##creating a copy matrix of a 2 by 207 matrix and filling in the first columnn with the countries
   copy1 <- as.data.frame(matrix(0, ncol = 1, nrow =207))
   copy1$V1 <- yearsdata$State.Countries
@@ -70,7 +55,7 @@ sidebyside <- function(year1, year2,
 
   ##creating a second copy matrix of a 2 by 207 matrix and filling in the first columnn with the countries
   copy2 <- as.data.frame(matrix(0, ncol = 1, nrow =207))
-  copy$V1 <- yearsdata$State.Countries
+  copy2$V1 <- yearsdata$State.Countries
   colnames(copy2)[1] <- "NAME"
 
   ##Adds the absolutechange colomn to each data frame
@@ -92,7 +77,7 @@ sidebyside <- function(year1, year2,
 
     ##Corrects the Districtof Columbia issue
     copy1$NAME <- as.character(copy1$NAME)
-    copy1[copy$NAME == "Districtof Columbia", 'NAME'] <- "District of Columbia"
+    copy1[copy1$NAME == "Districtof Columbia", 'NAME'] <- "District of Columbia"
 
     ##Corrects the Districtof Columbia issue
     copy2$NAME <- as.character(copy2$NAME)
@@ -142,18 +127,44 @@ sidebyside <- function(year1, year2,
   ##Creating map for year1 and year2
   mapgeo@data <- data.frame(mapgeo@data, copy1[match(mapgeo@data[,"NAME"], copy1[,"NAME"]),])
   mapgeo@data <- data.frame(mapgeo@data, copy2[match(mapgeo@data[,"NAME"], copy2[,"NAME"]),])
-  View(mapgeo)
   ##Code for the legends, titles, color scheme, format of the map, and creation of the actual plot
 
-  ##If statement for differences
+
+  ##Creation of the completed plot with the data incorporated
+  ##defaults for color, and EPH spirit
   color = "Purples"
+
+  ##If statement for comparison of change between years
   if (change == TRUE){
+
+    ##List of colors for convenience(lightestshade to darkest shade) Can use this for the created palette
+    green1 <- "#dbefd3"
+    green2 <- "#c1eeb4"
+    green3 <- "#9de686"
+    green4 <- "#78dd54"
+    green5 <- "#4fc431"
+    green6 <- "#47a426"
+    green7 <- "#37801d"
+    green8 <- "#265b12"
+    green9 <- "#1b4109"
+    green10 <- "#081f02"
+    gray <- "white"
+    red1 <- "#ffcacb"
+    red2 <- "#ff7f80"
+    red3 <- "#ff3235"
+    red4 <- "#ff4c4e"
+    red5 <- "#ff5656"
+    red6 <- "#f90204"
+    red7 <- "#e60000"
+    red8 <- "#cd0002"
+    red9 <- "#b20001"
+    red10 <- "#800000"
     breaksby10 = c(-Inf ,-27, -24, -21, -18, -15, -12, -9, -6, -3, -1, 1, 3, 6, 9, 12, 15, 18, 21, 24, 27, Inf)
     color = c(red10, red9, red8, red7, red6, red5, red4, red3, red2, red1,
               gray, green1, green2, green3, green4, green5, green6, green7, green8, green9, green10)
   }
 
-  ##Creation of the completed plot with the data incorporated
+  ##plotting the S4 object
   worldmap <- tm_shape(mapgeo) + tm_polygons(c("Students1", "Students2"),
                                              breaks = breaksby10,
                                              palette = list(color, color),

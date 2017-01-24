@@ -24,6 +24,9 @@ you can also plot sidebyside data of differences}
 \item{save}{Whether you want to save or not}
 
 \item{interactive}{Chooses the interactive mode in viewer, or just the default plot}
+
+\item{change}{Selects whether the year vectors given are differences between years,
+or just comparing dirrect yearly geographical distributions}
 }
 \value{
 sidebyside S4 object that has the different year datasets mapped to it
@@ -35,9 +38,15 @@ international options, and a statemap option.
 }
 \examples{
 ##Creating a state map of the data with data from 2001
-usmap2001 <- worldplot(yearsdata$X2001, title = "Change in Students 2000-2001")
+usmap2001 <- sidebyside(yearsdata$X2001, yearsdata$X2002, title1 = "2001", title2 = "2002")
 
 ##Creating an international map with interactive view
-worldmap <- worldplot(yearsdata$X2014, title = "Change in Students 2000-2001", interactive = TRUE)
+worldmap <- sidebyside(yearsdata$X2001, yearsdata$X2002, title1 = "2001", title2 = "2002", US = FALSE)
+
+##Creating a sidebyside map with change
+usmapofdifferences <- sidebyside(yearsdata$X2001-yearsdata$X2000, yearsdata$X2015-yearsdata$X2014,
+                                                                 title1 = "Change from 2000-2001",
+                                                                 title2 = "Change from 2014-2015",
+                                                                                   change = TRUE)
 
 }

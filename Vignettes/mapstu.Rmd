@@ -33,13 +33,13 @@ yearsdata[1:6, c("State.Countries","X2000","X2001")]
 
 The function **usmap** allows for the visual representation of the change in geographic distribution for U.S. territories. This function uses a shape file of all U.S. territories and appends the difference of the year vectors we want to compare, and maps the data to a red/green color scheme. Gradients of red represent a decrease and gradients of green represent an increase in the student population at Williams.  
 
-  An example here shows the change from William's student geographical distribution in 2000 to the William's student geographical distribution in 2015.
+  An example here shows the change from William's student geographical distribution in 2000 to the William's student geographical distribution in 2015. 
 
 ```{r, message=FALSE, warning=FALSE}
 mapstu::usmap(yearsdata$X2015, yearsdata$X2000, title = "Change in Students 2000-2015")
 ```
 
-We can immediately see some drastic changes in the geographical distribution of Williams College in these past 15 years. The student population from California has drastically increased, whereas the student population from Wisconsin has decreased. The downside is that the plot is somewhat small, and hard to see the individual state borders. Thus there is an *interactive* agrument in this function to open an interactive mode in the viewer. 
+We can immediately see some drastic changes in the geographical distribution of Williams College in these past 15 years. The student population from California has drastically increased, whereas the student population from Wisconsin has decreased. The downside is that the plot is somewhat small, and hard to see the individual state borders. Thus there is an *interactive* agrument in this function to open an interactive mode in the viewer. Example code of how to enter the arguments is:
 
 ```{r, eval=FALSE}
 mapstu::usmap(yearsdata$X2015, yearsdata$X2000, title = "Change in Students 2000-2015", save = TRUE, interactive = TRUE)
@@ -48,12 +48,76 @@ mapstu::usmap(yearsdata$X2015, yearsdata$X2000, title = "Change in Students 2000
 By running the code above, we also save the plot under the name of the title and open an interactive mode where one can zoom in and out. As well the interactive mode labels each state, and clicking on each area results in the numerical change of students in that area to be shown.
 
 ## Countrymap
+
+The function **countrymap** is similar to **usmap**, but instead creates a visual representation of the change in geographical distribution for the international students at Williams. An example of the function showing the change between the years 2000 to 2015 is shown below.
+
+```{r, message=FALSE, warning=FALSE}
+mapstu::countrymap(yearsdata$X2015, yearsdata$X2000, title = "Change in Students 2000-2015")
+```
+
+  A major downside to both **countrymap** and **usmap** is that the change has to be separated by domestic and international students, since the S4 files used do not have the states of the U.S. mapped with a world map. A future modification may also to display the overall change of the U.S. on the international plot.
+
 ## Worldplot
+
+The function **worldplot** is used to just map a single vector year of the geographical distribution of students. This is to show the overall diversity of the student population at Williams. An example of the function with the year 2015 is:
+
+```{r, message=FALSE, warning=FALSE}
+mapstu::worldplot(yearsdata$X2015, title = "Students Distribution in 2015")
+```
+
 ## Sidebyside
+
+The function **sidebyside** is used to create two visuals of the above functions on the same plot. It can be used to directly compare different student population distributions from different years, or to compare changes in student distributions over two different time periods. Examples of different kinds of usage of the function are shown below:
+
+  Showing the geographical distribution in 2000 VS. 2015 in the U.S.:
+  
+```{r, message=FALSE, warning=FALSE}
+mapstu::sidebyside(yearsdata$X2000 , yearsdata$X2015, title1 = "2000", title2 = "2015")
+```
+
+  Showing the geographical distribution in 2000 VS. 2015 on the international level:
+  
+```{r, message=FALSE, warning=FALSE}
+mapstu::sidebyside(yearsdata$X2000 , yearsdata$X2015, title1 = "2000", title2 = "2015", US = FALSE)
+```
+
+Showing the change in geographical distribution from 2000-2001 VS. 2014-2015 in the U.S. :
+
+```{r, message=FALSE, warning=FALSE}
+mapstu::sidebyside(yearsdata$X2001 - yearsdata$X2000, yearsdata$X2015 - yearsdata$X2014, title1 = "2000-2001", title2 = "2014-2015", change = TRUE)
+```
+
+Showing the change in geographical distribution from 2000-2001 VS. 2014-2015 on the international level :
+
+```{r, message=FALSE, warning=FALSE}
+mapstu::sidebyside(yearsdata$X2001 - yearsdata$X2000, yearsdata$X2015 - yearsdata$X2014, title1 = "2000-2001", title2 = "2014-2015", US = FALSE, change = TRUE)
+```
+
+**Note:** When using **sidebyside** to compare change, be sure to input **change = TRUE** arguement.
+
 ## Comparison
+
+This function **comparison** takes in two different year vectors and returns a quick summary in a dataframe comparing both years. Utilization of this function can provide actual numerical comparison between years rather than just a visual plot. Using **comparison** and **sidebyside** together will provide data for easier analysis. An example of the comparison between year 2000 and 2015 is shown below: 
+
+```{r, message=FALSE, warning=FALSE}
+mapstu::comparison(yearsdata$X2015, yearsdata$X2000)
+```
+
+**Note:** The more current year is put into the year1 argument, and the older year is put into the year2 argument.
+
 ## Perchange
-## Data analysis
+
+The function **perchange** takes in two different year vectors and returns a dataframe with percent change calculated for each state and country. Because it is hard to represent Inf values and NA values visually, all of the Inf and NA values were changed to 0. The percent change data is very helpful to see how Williams has changed their acceptance in different areas over time. Since it is returned in a dataframe, the percentage change can also be graphed in any of the graphing functions above; however, the plots will be inaccurate as Inf was set equal to NA values. An example of **perchange** used on year 2000 and 2015.
+
+```{r, message=FALSE, warning=FALSE}
+perch <- mapstu::perchange(yearsdata$X2015, yearsdata$X2000)
+perch[1:6, c("NAME", "Perchange")]
+```
 
 ## Conclusion
+A comparison between the geographical distribution of students attending Williams in the year 2000 to the students attending Williams in the year 2015 show that there has been a 18 person increase in the number of international students. During this time period Williams' largest increase in distribution lies in the 111 student increase from  California state. The largest decrease in distributions lies in the 61 student decrease from Massachusetts state. The graphics produced above indicate that Williams College has definitely moved towards increasing the amount of student diversity of different geographical areas. In the sidebyside plot of the years 2000vs2015, there is an obvious and large increase in the density of international students at Williams College, especially for students in Asia and Canada. It can also be seen that there are more students coming from Europe as well. As well, the "Change in Students 2000-2015" plot shows some major shifts in the geographical distribution of students within the U.S. These visual plots and numerical comparisons point towards Williams College attempting to diversify its student geographic distribution away from the northeastern region of the U.S. It seems that Williams College is seeking for greater student diversity within the college, and also attempting to spread its name away from the typical northeastern region of NESCAC schools in the U.S. However, these are merely hypotheses and cannot be proven without further investigation.  
+
+The package **mapstu** includes functions that allow for easy plotting of the geographical distribution data found in the Williams College Course Catalogs. It allows for easy manipulation of the years vector data so that the user can easily create plots of their choice which can be very helpful in studying the geographical diversity on campus, and how that changes thoughout the years. However, the package can certainly have many improvements. The function **readYears** can be improved so that no manual editing of the names of countries is required. The plots could also be improved by merging the S4 classes of international countries and the states, resulting in a single plot, so multiple functions to plot the same data on two different plots would no longer be required. As well, it would be interesting to find data on student cultures, or ethnicities and map them on them on top of the plots. This would allow for us to draw conclusions not just about geographical diversity, but about how geographical diversity can affect the cultural diversity of a campus.  
 
 ## Appendix
+The geographical distribution data throughout the years found in the Williams Course Catalogs were often in the form of (Alabama ......... 5). The text from these pdfs were copy-pasted over into a text file and renamed by their years. In order to create readable csv files, all extra punctuation was removed from these text tiles (Alabama       5). Since the removal of extra punctuation left spaces all extra spaces were removed (Alabama5). Then a comma was inserted between any lowercase letter and a number (Alabama,5). In the cases where areas had two word names, spaces were inputted between any lowercase and uppercase letter (New York,3). Finally to separate the states with their values spaces were inputted between any numerical value and a letter (Alabama,5 New York,3).     

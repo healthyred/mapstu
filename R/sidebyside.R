@@ -11,18 +11,18 @@
 #' @param title2 The title of the second plot
 #' @param savename The name the plot is saved to
 #' @param US choice of mapping US territories or mapping international countries
-#' @param save Whether you want to save or not
-#' @param interactive Chooses the interactive mode in viewer, or just the default plot
+#' @param save TRUE to save, FALSE to not
+#' @param interactive TRUE to choose the interactive mode in viewer, FALSE to view in just the default plot
 #' @param change Selects whether the year vectors given are differences between years,
 #'     or just comparing dirrect yearly geographical distributions
 #' @return sidebyside S4 object that has the different year datasets mapped to it
 #'
 #' @examples
 #' ##Creating a state map of the data with data from 2001
-#' usmap2001 <- sidebyside(yearsdata$X2001, yearsdata$X2002, title1 = "2001", title2 = "2002")
+#' usmap2001 <- sidebyside(yearsdata$2001, yearsdata$2002, title1 = "2001", title2 = "2002")
 #'
 #' ##Creating an international map with interactive view
-#' worldmap <- sidebyside(yearsdata$X2001, yearsdata$X2002, title1 = "2001", title2 = "2002", US = FALSE)
+#' worldmap <- sidebyside(yearsdata$2001, yearsdata$2002, title1 = "2001", title2 = "2002", US = FALSE)
 #'
 #' ##Creating a sidebyside map with change
 #' usmapofdifferences <- sidebyside(yearsdata$X2001-yearsdata$X2000, yearsdata$X2015-yearsdata$X2014,

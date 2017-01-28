@@ -6,13 +6,15 @@
 #' @param currentyear The vector of a dataset for the most current year
 #' @param oldyear The vector of a dataset for the year you want to compare to
 #' @param title The title of the plot and the name that the plot is saved to
-#' @param save Whether you want to save or not
-#' @param interactive Chooses the interactive mode in viewer, or just the default plot
+#' @param save TRUE to save, FALSE to not
+#' @param interactive TRUE to choose the interactive mode in viewer, FALSE to view in just the default plot
 #' @return a s4 object that has the difference of the datasets mapped to it
 #'
 #' @examples
-#' ##Creating the map of the data with data from 2001 and 2000
-#' countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001")
+#' ##Creating the map of the data with data from 2001 and 2000, as well as using save and interactive move
+#' countrymap2000.2001 <- countrymap(yearsdata$2001, yearsdata$2000, title = "Change in Students 2000-2001",
+#' save = TRUE, interactive = TRUE)
+#'
 #'
 #' @import leaflet tmap tmaptools
 #' @export
@@ -22,6 +24,7 @@ countrymap <- function(currentyear, oldyear, title = "", save = FALSE, interacti
   library(tmap)
   library(tmaptools)
   library(leaflet)
+
   ##List of colors for convenience(lightestshade to darkest shade) Can use this for the created palette
   green1 <- "#dbefd3"
   green2 <- "#c1eeb4"

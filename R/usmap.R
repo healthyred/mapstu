@@ -6,13 +6,13 @@
 #' @param currentyear The vector of a dataset for the most current year
 #' @param oldyear The vector of a dataset for the year you want to compare to
 #' @param title The title of the plot and the name which the plot is saved to
-#' @param save Whether you want to save or not
-#' @param interactive Chooses the interactive mode in viewer, or just the default plot
+#' @param save TRUE to save, FALSE to not
+#' @param interactive TRUE to choose the interactive mode in viewer, FALSE to view in just the default plot
 #' @return a s4 object that has the difference of the datasets mapped to it
 #'
 #' @examples
 #' ##Creating the map of the US with data from 2001 and 2002
-#' usmap2000.2002 <- usmap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001")
+#' usmap2000.2002 <- usmap(yearsdata$2001, yearsdata$2000, title = "Change in Students 2000-2001")
 #'
 #' @import leaflet tmap tmaptools
 #' @export

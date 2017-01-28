@@ -6,16 +6,16 @@
 #' @param year The vector for the year that is to be mapped
 #' @param title The title of the plot and the name which it will be saved to
 #' @param US choice of mapping US territories or mapping international countries
-#' @param save Whether you want to save or not
-#' @param interactive Chooses the interactive mode in viewer, or just the default plot
+#' @param save TRUE to save, FALSE to not
+#' @param interactive TRUE to choose the interactive mode in viewer, FALSE to view in just the default plot
 #' @return a S4 object that has the year dataset mapped to it
 #'
 #' @examples
 #' ##Creating a state map of the data with data from 2001
-#' usmap2001 <- worldplot(yearsdata$X2001, title = "Change in Students 2000-2001")
+#' usmap2001 <- worldplot(yearsdata$2001, title = "Change in Students 2000-2001")
 #'
 #' ##Creating an international map with interactive view
-#' worldmap <- worldplot(yearsdata$X2014, title = "Change in Students 2000-2001", interactive = TRUE)
+#' worldmap <- worldplot(yearsdata$2014, title = "Change in Students 2000-2001", interactive = TRUE)
 #'
 #' @import leaflet tmap tmaptools
 #' @export

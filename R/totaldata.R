@@ -36,6 +36,8 @@
 ##Creates a total data frame by states and countries using recursion
 totaldata <- function(){
 
+  library(plyr)
+
   ##function that converts the dataset to a data frame
   datatodf <- function(x, name){
 

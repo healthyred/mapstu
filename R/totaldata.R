@@ -7,6 +7,7 @@
 #' @param year The fall year of the dataset
 #' @return a dataframe for the dataset given
 #' @example yearsdata <- totaldata()
+#' @import plyr
 #'
 #' @export
 
@@ -39,7 +40,7 @@ totaldata <- function(){
   datatodf <- function(x, name){
 
     ##Creates dataframes for all of the data
-    year <- read.csv(x, header = FALSE)
+    year <- read.csv(x, header = FALSE, check.names = FALSE)
 
     ##Renames all of the columns in the dataframe
     names(year) <- c("State/Countries", name)
@@ -88,6 +89,24 @@ totaldata <- function(){
 
   ##Changes all the NA values in the df to zero to make calculations easier
   totalframe14[is.na(totalframe14)] <- 0
+
+  ##Rename the names of the year columns for less easier calling
+  totalframe14 <- rename(totalframe14, c("X2000" = "2000",
+                                         "X2001" = "2001",
+                                         "X2002" = "2002",
+                                         "X2003" = "2003",
+                                         "X2004" = "2004",
+                                         "X2005" = "2005",
+                                         "X2006" = "2006",
+                                         "X2007" = "2007",
+                                         "X2008" = "2008",
+                                         "X2009" = "2009",
+                                         "X2010" = "2010",
+                                         "X2011" = "2011",
+                                         "X2012" = "2012",
+                                         "X2013" = "2013",
+                                         "X2014" = "2014",
+                                         "X2015" = "2015"))
 
   ##Returns the complete dataframe
   return(totalframe14)

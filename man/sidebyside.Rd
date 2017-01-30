@@ -21,9 +21,9 @@ you can also plot sidebyside data of differences}
 
 \item{US}{choice of mapping US territories or mapping international countries}
 
-\item{save}{Whether you want to save or not}
+\item{save}{TRUE to save, FALSE to not}
 
-\item{interactive}{Chooses the interactive mode in viewer, or just the default plot}
+\item{interactive}{TRUE to choose the interactive mode in viewer, FALSE to view in just the default plot}
 
 \item{change}{Selects whether the year vectors given are differences between years,
 or just comparing dirrect yearly geographical distributions}

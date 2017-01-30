@@ -13,9 +13,9 @@ usmap(currentyear, oldyear, title = "", save = FALSE, interactive = FALSE)
 
 \item{title}{The title of the plot and the name which the plot is saved to}
 
-\item{save}{Whether you want to save or not}
+\item{save}{TRUE to save, FALSE to not}
 
-\item{interactive}{Chooses the interactive mode in viewer, or just the default plot}
+\item{interactive}{TRUE to choose the interactive mode in viewer, FALSE to view in just the default plot}
 }
 \value{
 a s4 object that has the difference of the datasets mapped to it

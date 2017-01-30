@@ -12,7 +12,7 @@
 #' @return a comparison summary between year 1 and year 2
 #'
 #' @example
-#' comparison(yearsdata$2000, yearsdata$2015)
+#' comparison(yearsdata$X2000, yearsdata$X2015)
 #' @export
 
 

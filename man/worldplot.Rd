@@ -14,9 +14,9 @@ worldplot(year, title = "", US = TRUE, save = FALSE,
 
 \item{US}{choice of mapping US territories or mapping international countries}
 
-\item{save}{Whether you want to save or not}
+\item{save}{TRUE to save, FALSE to not}
 
-\item{interactive}{Chooses the interactive mode in viewer, or just the default plot}
+\item{interactive}{TRUE to choose the interactive mode in viewer, FALSE to view in just the default plot}
 }
 \value{
 a S4 object that has the year dataset mapped to it

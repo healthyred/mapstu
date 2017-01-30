@@ -14,9 +14,9 @@ countrymap(currentyear, oldyear, title = "", save = FALSE,
 
 \item{title}{The title of the plot and the name that the plot is saved to}
 
-\item{save}{Whether you want to save or not}
+\item{save}{TRUE to save, FALSE to not}
 
-\item{interactive}{Chooses the interactive mode in viewer, or just the default plot}
+\item{interactive}{TRUE to choose the interactive mode in viewer, FALSE to view in just the default plot}
 }
 \value{
 a s4 object that has the difference of the datasets mapped to it
@@ -26,7 +26,9 @@ Takes in two years worth of datasets and returns a map of the
 international countries that maps the difference of the two datasets
 }
 \examples{
-##Creating the map of the data with data from 2001 and 2000
-countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001")
+##Creating the map of the data with data from 2001 and 2000, as well as using save and interactive move
+countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001",
+save = TRUE, interactive = TRUE)
+
 
 }

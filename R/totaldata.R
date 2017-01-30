@@ -6,8 +6,7 @@
 #'     the read years function
 #' @param year The fall year of the dataset
 #' @return a dataframe for the dataset given
-#' @example yearsdata <- totaldata()
-#' @import plyr
+#' @example To initialize the df: yearsdata <- totaldata()
 #'
 #' @export
 

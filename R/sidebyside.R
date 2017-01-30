@@ -19,10 +19,10 @@
 #'
 #' @examples
 #' ##Creating a state map of the data with data from 2001
-#' usmap2001 <- sidebyside(yearsdata$2001, yearsdata$2002, title1 = "2001", title2 = "2002")
+#' usmap2001 <- sidebyside(yearsdata$X2001, yearsdata$X2002, title1 = "2001", title2 = "2002")
 #'
 #' ##Creating an international map with interactive view
-#' worldmap <- sidebyside(yearsdata$2001, yearsdata$2002, title1 = "2001", title2 = "2002", US = FALSE)
+#' worldmap <- sidebyside(yearsdata$X2001, yearsdata$X2002, title1 = "2001", title2 = "2002", US = FALSE)
 #'
 #' ##Creating a sidebyside map with change
 #' usmapofdifferences <- sidebyside(yearsdata$X2001-yearsdata$X2000, yearsdata$X2015-yearsdata$X2014,

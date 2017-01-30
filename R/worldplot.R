@@ -12,10 +12,10 @@
 #'
 #' @examples
 #' ##Creating a state map of the data with data from 2001
-#' usmap2001 <- worldplot(yearsdata$2001, title = "Change in Students 2000-2001")
+#' usmap2001 <- worldplot(yearsdata$X2001, title = "Change in Students 2000-2001")
 #'
 #' ##Creating an international map with interactive view
-#' worldmap <- worldplot(yearsdata$2014, title = "Change in Students 2000-2001", interactive = TRUE)
+#' worldmap <- worldplot(yearsdata$X2014, title = "Change in Students 2000-2001", interactive = TRUE)
 #'
 #' @import leaflet tmap tmaptools
 #' @export

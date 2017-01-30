@@ -1,6 +1,6 @@
 ---
 title: "mapstu"
-author: "Jian Lu"
+author: "Jian Lu '19"
 date: "January 23, 2017"
 output: pdf_document
 ---
@@ -26,8 +26,10 @@ The data used to construct the overall data frame in this package was taken from
 
 ```{r}
 yearsdata <- mapstu::totaldata()
-yearsdata[1:6, c("State.Countries","X2000","X2001")]
+yearsdata[1:6, c("State.Countries","2000","2001")]
 ```
+
+**Note** In order to utilize the functions in this package, the dataframe must be initialized as the packages take in vectors from the yearsdata dataframe.
 
 ## Usmap
 
@@ -117,7 +119,7 @@ perch[1:6, c("NAME", "Perchange")]
 ## Conclusion
 A comparison between the geographical distribution of students attending Williams in the year 2000 to the students attending Williams in the year 2015 show that there has been a 18 person increase in the number of international students. During this time period Williams' largest increase in distribution lies in the 111 student increase from  California state. The largest decrease in distributions lies in the 61 student decrease from Massachusetts state. The graphics produced above indicate that Williams College has definitely moved towards increasing the amount of student diversity of different geographical areas. In the sidebyside plot of the years 2000vs2015, there is an obvious and large increase in the density of international students at Williams College, especially for students in Asia and Canada. It can also be seen that there are more students coming from Europe as well. As well, the "Change in Students 2000-2015" plot shows some major shifts in the geographical distribution of students within the U.S. These visual plots and numerical comparisons point towards Williams College attempting to diversify its student geographic distribution away from the northeastern region of the U.S. It seems that Williams College is seeking for greater student diversity within the college, and also attempting to spread its name away from the typical northeastern region of NESCAC schools in the U.S. However, these are merely hypotheses and cannot be proven without further investigation.  
 
-The package **mapstu** includes functions that allow for easy plotting of the geographical distribution data found in the Williams College Course Catalogs. It allows for easy manipulation of the years vector data so that the user can easily create plots of their choice which can be very helpful in studying the geographical diversity on campus, and how that changes throughout the years. However, the package can certainly have many improvements. The function **readYears** can be improved so that no manual editing of the names of countries is required. The plots could also be improved by merging the S4 classes of international countries and the states, resulting in a single plot, so multiple functions to plot the same data on two different plots would no longer be required. As well, it would be interesting to find data on student cultures, or ethnicities and map them on them on top of the plots. This would allow for us to draw conclusions not just about geographical diversity, but about how geographical diversity can affect the cultural diversity of a campus.  
+The package **mapstu** includes functions that allow for easy plotting of the geographical distribution data found in the Williams College Course Catalogs. It allows for easy manipulation of the years vector data so that the user can easily create plots of their choice which can be very helpful in studying the geographical diversity on campus, and how that changes throughout the years. However, the package can certainly have many improvements. The function **readYears** can be improved so that no manual editing of the names of countries is required. All the of the functions could also be formatted into Hadley Wickham's recommended **function**(dataset, x1, x2, ...) format. The plots could also be improved by merging the S4 classes of international countries and the states, resulting in a single plot, so multiple functions to plot the same data on two different plots would no longer be required. As well, it would be interesting to find data on student cultures, or ethnicities and map them on them on top of the plots. This would allow for us to draw conclusions not just about geographical diversity, but about how geographical diversity can affect the cultural diversity of a campus.  
 
 ## Appendix
 The geographical distribution data throughout the years found in the Williams Course Catalogs were often in the form of (Alabama ......... 5). The text from these pdfs were copy-pasted over into a text file and renamed by their years. In order to create readable csv files, all extra punctuation was removed from these text tiles (Alabama       5). Since the removal of extra punctuation left spaces all extra spaces were removed (Alabama5). Then a comma was inserted between any lowercase letter and a number (Alabama,5). In the cases where areas had two word names, spaces were inputted between any lowercase and uppercase letter (New York,3). Finally to separate the states with their values spaces were inputted between any numerical value and a letter (Alabama,5 New York,3).     

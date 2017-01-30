@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' ##Creating the map of the data with data from 2001 and 2000, as well as using save and interactive move
-#' countrymap2000.2001 <- countrymap(yearsdata$2001, yearsdata$2000, title = "Change in Students 2000-2001",
+#' countrymap2000.2001 <- countrymap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001",
 #' save = TRUE, interactive = TRUE)
 #'
 #'

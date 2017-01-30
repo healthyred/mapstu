@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' ##Creating the map of the US with data from 2001 and 2002
-#' usmap2000.2002 <- usmap(yearsdata$2001, yearsdata$2000, title = "Change in Students 2000-2001")
+#' usmap2000.2002 <- usmap(yearsdata$X2001, yearsdata$X2000, title = "Change in Students 2000-2001")
 #'
 #' @import leaflet tmap tmaptools
 #' @export

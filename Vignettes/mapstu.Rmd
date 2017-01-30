@@ -26,7 +26,7 @@ The data used to construct the overall data frame in this package was taken from
 
 ```{r}
 yearsdata <- mapstu::totaldata()
-yearsdata[1:6, c("State.Countries","2000","2001")]
+yearsdata[1:6, c("State.Countries","X2000","X2001")]
 ```
 
 **Note** In order to utilize the functions in this package, the dataframe must be initialized as the packages take in vectors from the yearsdata dataframe.
